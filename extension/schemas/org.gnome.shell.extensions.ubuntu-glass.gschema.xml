@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <enum id="org.gnome.shell.extensions.ubuntu-glass.Appearance">
+    <value value="0" nick="system"/>
+    <value value="1" nick="dark"/>
+    <value value="2" nick="light"/>
+  </enum>
+  <enum id="org.gnome.shell.extensions.ubuntu-glass.Accent">
+    <value value="0" nick="orange"/>
+    <value value="1" nick="blue"/>
+    <value value="2" nick="sage"/>
+    <value value="3" nick="aubergine"/>
+    <value value="4" nick="graphite"/>
+    <value value="5" nick="system"/>
+  </enum>
+  <enum id="org.gnome.shell.extensions.ubuntu-glass.Wallpaper">
+    <value value="0" nick="ember"/>
+    <value value="1" nick="dusk"/>
+    <value value="2" nick="tide"/>
+    <value value="3" nick="graphite"/>
+  </enum>
+  <enum id="org.gnome.shell.extensions.ubuntu-glass.Preset">
+    <value value="0" nick="custom"/>
+    <value value="1" nick="full"/>
+    <value value="2" nick="balanced"/>
+    <value value="3" nick="minimal"/>
+    <value value="4" nick="performance"/>
+    <value value="5" nick="accessibility"/>
+  </enum>
+
+  <schema id="org.gnome.shell.extensions.ubuntu-glass" path="/org/gnome/shell/extensions/ubuntu-glass/">
+
+    <!-- Appearance -->
+    <key name="glass-effects" type="b">
+      <default>true</default>
+      <summary>Glassmorphism effects</summary>
+      <description>Use translucent glass surfaces. When off, every surface uses its solid fallback colour.</description>
+    </key>
+    <key name="background-blur" type="b">
+      <default>true</default>
+      <summary>Background blur</summary>
+      <description>Blur the desktop behind the top bar and the dock.</description>
+    </key>
+    <key name="transparency" type="b">
+      <default>true</default>
+      <summary>Transparency</summary>
+      <description>Let the wallpaper show through glass surfaces. When off, surfaces are almost opaque.</description>
+    </key>
+    <key name="glass-borders" type="b">
+      <default>true</default>
+      <summary>Glass borders</summary>
+      <description>Draw the hairline edge around glass surfaces.</description>
+    </key>
+    <key name="shadows" type="b">
+      <default>true</default>
+      <summary>Shadows and elevation</summary>
+      <description>Draw drop shadows under panels, menus and dialogs.</description>
+    </key>
+    <key name="rounded-corners" type="b">
+      <default>true</default>
+      <summary>Rounded corners</summary>
+      <description>Use the theme's radius scale. When off, a small uniform radius is used.</description>
+    </key>
+    <key name="glass-intensity" type="i">
+      <range min="0" max="100"/>
+      <default>100</default>
+      <summary>Glass intensity</summary>
+      <description>How translucent glass surfaces are. 100 is the designed value, 0 is opaque.</description>
+    </key>
+    <key name="blur-intensity" type="i">
+      <range min="0" max="100"/>
+      <default>100</default>
+      <summary>Blur intensity</summary>
+      <description>Strength of the background blur. 100 is the designed value.</description>
+    </key>
+    <key name="accent" enum="org.gnome.shell.extensions.ubuntu-glass.Accent">
+      <default>'orange'</default>
+      <summary>Accent colour</summary>
+      <description>Colour used for active and selected states. "system" follows the GNOME accent colour.</description>
+    </key>
+    <key name="appearance" enum="org.gnome.shell.extensions.ubuntu-glass.Appearance">
+      <default>'system'</default>
+      <summary>Appearance mode</summary>
+      <description>Follow the system style, or force the dark or light appearance.</description>
+    </key>
+
+    <!-- Components -->
+    <key name="panel-style" type="b">
+      <default>true</default>
+      <summary>Custom top bar styling</summary>
+    </key>
+    <key name="dock-style" type="b">
+      <default>true</default>
+      <summary>Floating glass dock</summary>
+    </key>
+    <key name="dock-animations" type="b">
+      <default>true</default>
+      <summary>Dock animations</summary>
+    </key>
+    <key name="quick-settings-style" type="b">
+      <default>true</default>
+      <summary>Glass quick settings panel</summary>
+    </key>
+    <key name="notifications-style" type="b">
+      <default>true</default>
+      <summary>Glass notifications and calendar</summary>
+    </key>
+    <key name="menus-style" type="b">
+      <default>true</default>
+      <summary>Glass menus and tooltips</summary>
+    </key>
+    <key name="dialogs-style" type="b">
+      <default>true</default>
+      <summary>Glass dialogs, overlays and lock screen</summary>
+    </key>
+    <key name="overview-style" type="b">
+      <default>true</default>
+      <summary>Glass overview and search</summary>
+    </key>
+    <key name="window-style" type="b">
+      <default>true</default>
+      <summary>Custom window styling</summary>
+      <description>Write a GTK stylesheet that applies the theme's colours, radii and window controls to GTK applications.</description>
+    </key>
+
+    <!-- Desktop -->
+    <key name="icon-theme" type="b">
+      <default>false</default>
+      <summary>Custom icon theme</summary>
+      <description>Switch to the Ubuntu-Glass icon theme. The previous icon theme is restored when this is turned off.</description>
+    </key>
+    <key name="wallpaper" type="b">
+      <default>false</default>
+      <summary>Custom wallpaper</summary>
+      <description>Use one of the theme wallpapers. The previous wallpaper is restored when this is turned off.</description>
+    </key>
+    <key name="wallpaper-name" enum="org.gnome.shell.extensions.ubuntu-glass.Wallpaper">
+      <default>'ember'</default>
+      <summary>Theme wallpaper</summary>
+    </key>
+
+    <!-- Accessibility -->
+    <key name="reduced-motion" type="b">
+      <default>false</default>
+      <summary>Reduced motion</summary>
+      <description>Remove the theme's nonessential transitions.</description>
+    </key>
+    <key name="high-contrast" type="b">
+      <default>false</default>
+      <summary>High contrast</summary>
+      <description>Strengthen edges and secondary text, and make surfaces more opaque.</description>
+    </key>
+
+    <!-- Entry point and bookkeeping -->
+    <key name="show-indicator" type="b">
+      <default>true</default>
+      <summary>Show the Glass tile in Quick Settings</summary>
+    </key>
+    <key name="preset" enum="org.gnome.shell.extensions.ubuntu-glass.Preset">
+      <default>'full'</default>
+      <summary>Last applied preset</summary>
+      <description>Set to "custom" as soon as a setting that a preset controls is changed by hand.</description>
+    </key>
+    <key name="backup" type="s">
+      <default>'{}'</default>
+      <summary>Saved system settings</summary>
+      <description>JSON record of the system settings the extension changed, used to restore them. Not meant to be edited.</description>
+    </key>
+  </schema>
+</schemalist>
