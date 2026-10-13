@@ -10,7 +10,11 @@ import {rule, section, edge, focusRing} from './util.js';
  */
 export function quickSettingsCss(t) {
     const {c, r} = t;
-    const tile = ['.quick-toggle', '.quick-toggle-has-menu .quick-toggle-menu-button'];
+    const tile = [
+        '.quick-toggle',
+        '.quick-toggle-has-menu .quick-toggle',
+        '.quick-toggle-has-menu .quick-toggle-menu-button',
+    ];
     const st = s => tile.map(x => `${x}${s}`);
     const inner = Math.max(r.xl - 10, r.sm);
 
@@ -104,7 +108,7 @@ export function quickSettingsCss(t) {
 
         // Sliders and the round system buttons.
         rule(['.quick-slider .slider', '.popup-menu .slider'], {
-            'color': t.mode === 'dark' ? '#ffffff' : '#ffffff',
+            'color': '#ffffff',
             '-barlevel-height': '6px',
             '-barlevel-background-color': c.track,
             '-barlevel-active-background-color': c.accent,
