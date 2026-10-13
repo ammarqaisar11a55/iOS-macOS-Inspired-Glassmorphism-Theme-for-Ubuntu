@@ -68,9 +68,23 @@ export function notificationsCss(t) {
         rule('.calendar .calendar-month-header .calendar-month-label', {
             color: `${c.text} !important`,
         }),
-        rule('.calendar .calendar-day-heading', {color: c.text3}),
+        rule('.calendar .calendar-day-heading', {
+            'color': c.text3,
+            'background-color': 'transparent',
+        }),
+        rule('.calendar .calendar-month-header .pager-button', {
+            'color': c.text,
+            'background-color': c.ctl,
+        }),
+        rule('.calendar .calendar-month-header .pager-button:hover', {
+            'background-color': c.cardOn,
+        }),
+        rule('.calendar .calendar-month-header .calendar-month-label', {
+            'background-color': 'transparent',
+        }),
         rule('.calendar .calendar-day', {
             'color': c.text,
+            'background-color': 'transparent',
             'border-radius': `${r.sm}px`,
         }),
         rule(['.calendar .calendar-day:hover', '.calendar .calendar-day:focus'], {
@@ -91,7 +105,10 @@ export function notificationsCss(t) {
         rule([
             '.calendar .calendar-other-month',
             '.calendar .calendar-week-number',
-        ], {color: c.text3}),
+        ], {
+            'color': c.text3,
+            'background-color': 'transparent',
+        }),
         rule('.events-button .events-box .events-list .event-box .event-time', {
             color: c.text2,
         }),
