@@ -42,7 +42,7 @@ export function panelCss(t) {
             `${button}.clock-display:checked .clock`,
         ], {
             'color': c.text,
-            'box-shadow': fill(c.cardOn),
+            'box-shadow': fill(c.track),
         }),
         rule([`${button}:focus`, `${button}.clock-display:focus .clock`], {
             'box-shadow': focusRing(t),
