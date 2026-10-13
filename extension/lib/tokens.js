@@ -266,10 +266,13 @@ export function resolveTokens(options = {}) {
     const [a1, a2, a3, a4] = base.shadowAlpha;
     const shadow = opts.shadows
         ? {
-            e1: `0 8px 24px 0 ${sh(a1)}`,
-            e2: `0 12px 32px 0 ${sh(a2)}`,
-            e3: `0 16px 48px 0 ${sh(a3)}`,
-            e4: `0 24px 64px 0 ${sh(a4)}`,
+            // Much tighter than the mockup's 24-64 px blurs. St does not
+            // fade wide shadows under translucent rounded boxes; they show
+            // as a hard-edged band, most visibly over light windows.
+            e1: `0 2px 6px 0 ${sh(a1)}`,
+            e2: `0 3px 8px 0 ${sh(a2)}`,
+            e3: `0 4px 10px 0 ${sh(a3)}`,
+            e4: `0 6px 14px 0 ${sh(a4)}`,
         }
         : {e1: 'none', e2: 'none', e3: 'none', e4: 'none'};
 
