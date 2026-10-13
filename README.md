@@ -4,6 +4,18 @@ A macOS- and iOS-inspired glass theme for Ubuntu's GNOME desktop. It borrows the
 
 Ubuntu Glass is a GNOME Shell extension with a settings window. Every effect can be switched on or off on its own, and everything the theme changes outside itself is backed up first and put back when you turn it off.
 
+![Ubuntu Glass in dark mode: Files window, glass top bar and floating dock over the Ember wallpaper](docs/screenshots/dark-desktop.jpg)
+
+## Preview
+
+| Dark | Light |
+|---|---|
+| ![Dark desktop with quick settings open](docs/screenshots/dark-quick-settings.jpg) | ![Light desktop with quick settings open](docs/screenshots/light-quick-settings.jpg) |
+| ![Calendar and notifications in dark mode](docs/screenshots/dark-calendar.jpg) | ![Light desktop with the Files window](docs/screenshots/light-desktop.jpg) |
+| ![Glass Theme Settings window](docs/screenshots/dark-settings.jpg) | ![Tide wallpaper with the Cool Blue accent](docs/screenshots/dark-tide-blue.jpg) |
+
+Top to bottom: quick settings in both modes, the calendar and the light desktop, then Glass Theme Settings and the Tide wallpaper with the Cool Blue accent. These are real screenshots of the extension on GNOME Shell 50.1 with the theme wallpaper and icon theme switched on, not mockups.
+
 ## What you get
 
 - Translucent top bar and floating dock, with real background blur.
