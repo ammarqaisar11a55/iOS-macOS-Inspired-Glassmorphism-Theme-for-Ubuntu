@@ -46,10 +46,11 @@ export function dockCss(t, {animations = true} = {}) {
         }),
         rule([...icon(':active'), ...icon(':checked')], {
             'color': c.text,
-            'background-color': c.cardOn,
+            'background-color': c.track,
         }),
+        // The focused app gets a quiet neutral plate, not the bright "on" card.
         rule([...icon('.focused'), ...icon('.focused:hover')], {
-            'background-color': c.cardOn,
+            'background-color': c.track,
         }),
         rule(icon(':focus'), {
             'background-color': c.sel,
