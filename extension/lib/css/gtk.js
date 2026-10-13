@@ -98,7 +98,7 @@ window.csd:not(.maximized):not(.fullscreen):not(.tiled) > decoration {
   border-radius: ${r.md}px;
 }
 
-button:not(.circular):not(.pill):not(.flat.image-button),
+button:not(.circular):not(.pill),
 entry,
 spinbutton,
 dropdown > button,
