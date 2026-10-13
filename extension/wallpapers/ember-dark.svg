@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160">
+  <defs>
+    <linearGradient id="base" gradientUnits="userSpaceOnUse" x1="1348.3" y1="-490.7" x2="2491.7" y2="2650.7"><stop offset="0" stop-color="#1B1A20"/><stop offset="1" stop-color="#0F1013"/></linearGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientTransform="translate(0.72 0.92) scale(0.45 0.55)"><stop offset="0" stop-color="rgb(70,110,180)" stop-opacity="0.26"/><stop offset="0.62" stop-color="rgb(70,110,180)" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow1" cx="0" cy="0" r="1" gradientTransform="translate(0.92 0.0) scale(0.6 0.75)"><stop offset="0" stop-color="rgb(119,41,83)" stop-opacity="0.6"/><stop offset="0.64" stop-color="rgb(119,41,83)" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow0" cx="0" cy="0" r="1" gradientTransform="translate(0.1 1.0) scale(0.7 0.8)"><stop offset="0" stop-color="rgb(233,96,44)" stop-opacity="0.46"/><stop offset="0.62" stop-color="rgb(233,96,44)" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="3840" height="2160" fill="url(#base)"/>
+  <rect width="3840" height="2160" fill="url(#glow2)"/>
+  <rect width="3840" height="2160" fill="url(#glow1)"/>
+  <rect width="3840" height="2160" fill="url(#glow0)"/>
+</svg>
