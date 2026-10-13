@@ -1,0 +1,15 @@
+# Compiled GSettings schemas are rebuilt by install.sh
+gschemas.compiled
+
+# Build and test output
+/build/
+/dist/
+*.zip
+__pycache__/
+*.pyc
+
+# Editor and OS noise
+.vscode/
+.idea/
+*~
+.DS_Store
