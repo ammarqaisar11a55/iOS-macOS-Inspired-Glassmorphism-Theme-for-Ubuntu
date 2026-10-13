@@ -265,7 +265,6 @@ export function readAll(gsettings) {
  */
 export function writeAll(gsettings, values) {
     const written = [];
-    gsettings.delay();
     for (const [key, raw] of Object.entries(values)) {
         const def = KEYS[key];
         const v = sanitize(key, raw);
@@ -286,7 +285,6 @@ export function writeAll(gsettings, values) {
         }
         written.push(key);
     }
-    gsettings.apply();
     return written;
 }
 
