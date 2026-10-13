@@ -1,0 +1,10 @@
+{
+  "uuid": "ubuntu-glass@ammarqaisar11a55.github.io",
+  "name": "Ubuntu Glass",
+  "description": "A macOS- and iOS-inspired glass theme for Ubuntu's GNOME desktop.\n\nStyles the top bar, dock, quick settings, notifications, menus and dialogs, and adds a Glass Theme Settings window where every effect can be switched on or off independently.",
+  "shell-version": ["46", "47", "48", "49", "50"],
+  "session-modes": ["user", "unlock-dialog"],
+  "url": "https://github.com/ammarqaisar11a55/iOS-macOS-Inspired-Glassmorphism-Theme-for-Ubuntu",
+  "settings-schema": "org.gnome.shell.extensions.ubuntu-glass",
+  "version-name": "1.0.0"
+}
