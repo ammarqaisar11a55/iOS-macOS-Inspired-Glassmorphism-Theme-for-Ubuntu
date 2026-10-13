@@ -7,6 +7,7 @@ import {rule, section, edge, focusRing, cross} from './util.js';
 
 const SIDES = ['bottom', 'top', 'left', 'right'];
 const TILES = ['.app-well-app', '.show-apps', '.overview-tile'];
+const FLOAT_GAP = 8;
 
 /**
  * @param {object} t - resolved tokens
@@ -29,6 +30,10 @@ export function dockCss(t, {animations = true} = {}) {
             'border-radius': `${r.dock}px`,
             'box-shadow': t.shadow.e1,
         }),
+        // Lift the bar off the screen edge it is attached to.
+        ...SIDES.map(side => rule(`#dashtodockContainer.${side} #dash .dash-background`, {
+            [`margin-${side}`]: `${FLOAT_GAP}px`,
+        })),
         rule(icon(), {
             'color': c.text,
             'background-color': 'transparent',
