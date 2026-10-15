@@ -422,3 +422,10 @@ ICONS += [
                "screenshooter-symbolic", "org.gnome.Screenshot-symbolic"], "layers": [("s", CAMERA)]},
     {"names": ["camera-disabled-symbolic", "camera-web-disabled-symbolic"], "layers": [("s", CAMERA, DIM), ("s", "M2 2l20 20")]},
 ]
+
+ICONS += [
+    {"names": ["utilities-terminal-symbolic", "org.gnome.Ptyxis-symbolic", "org.gnome.Terminal-symbolic",
+               "org.gnome.Console-symbolic", "terminal-symbolic"], "layers": [("s", "M4 17l6-6-6-6M12 19h8")]},
+    {"names": ["text-x-script-symbolic", "applications-engineering-symbolic", "code-symbolic"],
+     "layers": [("s", "M16 18l6-6-6-6M8 6l-6 6 6 6")]},
+]
