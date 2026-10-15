@@ -77,7 +77,7 @@ HELPER="$HOME/.local/share/gnome-shell/extensions/glass-test@local"
 mkdir -p "$HELPER"
 shell_major="$(gnome-shell --version | sed -E 's/[^0-9]*([0-9]+).*/\1/')"
 cat > "$HELPER/metadata.json" <<J
-{"uuid": "glass-test@local", "name": "Glass test helper", "description": "Test only", "shell-version": ["$shell_major"]}
+{"uuid": "glass-test@local", "name": "Glass test helper", "description": "Test only", "shell-version": ["$shell_major"], "session-modes": ["user", "unlock-dialog"]}
 J
 cat > "$HELPER/extension.js" <<'J'
 import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
