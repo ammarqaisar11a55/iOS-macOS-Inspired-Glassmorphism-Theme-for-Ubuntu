@@ -79,3 +79,39 @@ ICONS += [
     {"names": ["airplane-mode-symbolic"], "layers": [("s", PLANE)]},
     {"names": ["airplane-mode-disabled-symbolic"], "layers": [("s", PLANE, DIM), ("s", "M2 2l20 20")]},
 ]
+
+# Battery: outline with a fill bar for the charge. While charging, the bar is
+# dimmed and a bolt sits on top. Low and empty batteries are tagged "error"
+# so GNOME can colour them red.
+BATTERY = rect(2, 7, 16, 10, 2) + "M22 11v2"
+BATTERY_BOLT = "M10.6 8.6 7.4 12.4h3l-1.2 3 3.4-4h-3z"
+
+
+def battery(level, charging=False):
+    layers = [("s", BATTERY)]
+    width = round(11 * level / 100, 2)
+    if width > 0:
+        options = {"opacity": 0.35} if charging else ({"class": "error"} if level <= 10 else {})
+        layers.append(("f", rect(4.5, 9.5, max(width, 1), 5, 0.6 if width >= 1.2 else 0), options))
+    if charging:
+        layers.append(("f", BATTERY_BOLT))
+    return layers
+
+
+for level in range(0, 101, 10):
+    ICONS.append({"names": [f"battery-level-{level}-symbolic"], "layers": battery(level)})
+    ICONS.append({"names": [f"battery-level-{level}-charging-symbolic"], "layers": battery(level, True)})
+
+ICONS += [
+    {"names": ["battery-level-100-charged-symbolic", "battery-full-charged-symbolic"], "layers": battery(100)},
+    {"names": ["battery-full-symbolic", "battery-symbolic"], "layers": battery(100)},
+    {"names": ["battery-good-symbolic"], "layers": battery(70)},
+    {"names": ["battery-low-symbolic"], "layers": battery(30)},
+    {"names": ["battery-caution-symbolic"], "layers": battery(10)},
+    {"names": ["battery-empty-symbolic"], "layers": battery(0)},
+    {"names": ["battery-full-charging-symbolic"], "layers": battery(100, True)},
+    {"names": ["battery-good-charging-symbolic"], "layers": battery(70, True)},
+    {"names": ["battery-low-charging-symbolic"], "layers": battery(30, True)},
+    {"names": ["battery-caution-charging-symbolic", "battery-empty-charging-symbolic"], "layers": battery(10, True)},
+    {"names": ["battery-missing-symbolic"], "layers": [("s", BATTERY, DIM), ("s", "M10 10.5v1.8M10 14h.01")]},
+]
