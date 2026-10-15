@@ -2,7 +2,7 @@
 Name=Ubuntu-Glass
 Comment=Rounded app tiles for the Ubuntu Glass theme
 Inherits=Yaru,Adwaita,hicolor
-Directories=scalable/apps,scalable/places,scalable/mimetypes
+Directories=scalable/apps,scalable/places,scalable/mimetypes,symbolic
 
 [scalable/apps]
 Size=64
@@ -24,3 +24,10 @@ MinSize=16
 MaxSize=512
 Type=Scalable
 Context=MimeTypes
+
+[symbolic]
+Size=16
+MinSize=8
+MaxSize=512
+Type=Scalable
+Context=Status
