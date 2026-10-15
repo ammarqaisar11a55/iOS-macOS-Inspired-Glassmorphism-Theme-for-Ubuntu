@@ -113,6 +113,11 @@
       <default>true</default>
       <summary>Glass dialogs, overlays and lock screen</summary>
     </key>
+    <key name="lock-screen-style" type="b">
+      <default>true</default>
+      <summary>Glass lock screen</summary>
+      <description>Style the lock screen after the design: tinted blur, large thin clock with the date above it, ringed avatar, glass password field and round buttons.</description>
+    </key>
     <key name="overview-style" type="b">
       <default>true</default>
       <summary>Glass overview and search</summary>
