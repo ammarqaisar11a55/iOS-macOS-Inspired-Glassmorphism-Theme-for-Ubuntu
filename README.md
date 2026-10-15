@@ -16,7 +16,9 @@ Ubuntu Glass is a GNOME Shell extension with a settings window. Every effect can
 
 ![Files showing the blue folder icons and file-type badges](docs/screenshots/dark-files.png)
 
-Top to bottom: quick settings in both modes, the calendar and the light desktop, then Glass Theme Settings and the Tide wallpaper with the Cool Blue accent, and last the file manager with the theme's folder and file icons. These are real screenshots of the extension on GNOME Shell 50.1 with the theme wallpaper and icon theme switched on, not mockups.
+![Ptyxis terminal with the Ubuntu Glass palette in dark mode](docs/screenshots/dark-terminal.png)
+
+Top to bottom: quick settings in both modes, the calendar and the light desktop, then Glass Theme Settings and the Tide wallpaper with the Cool Blue accent, then the file manager with the theme's folder and file icons, and last the Ptyxis terminal with the Ubuntu Glass palette. These are real screenshots of the extension on GNOME Shell 50.1 with the theme wallpaper and icon theme switched on, not mockups.
 
 ## What you get
 
