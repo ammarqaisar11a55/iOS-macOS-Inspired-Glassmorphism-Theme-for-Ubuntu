@@ -158,3 +158,10 @@ ICONS += [
                "weather-clear-symbolic", "keyboard-brightness-symbolic"], "layers": [("s", SUN)]},
     {"names": ["display-brightness-off-symbolic"], "layers": [("s", SUN, DIM)]},
 ]
+
+# Crescent moon for Night Light.
+MOON = "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"
+ICONS += [
+    {"names": ["night-light-symbolic", "weather-clear-night-symbolic"], "layers": [("s", MOON)]},
+    {"names": ["night-light-disabled-symbolic"], "layers": [("s", MOON, DIM), ("s", "M2 2l20 20")]},
+]
