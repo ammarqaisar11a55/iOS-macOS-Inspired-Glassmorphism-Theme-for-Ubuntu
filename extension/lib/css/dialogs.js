@@ -1,4 +1,5 @@
-// Modal dialogs, on-screen overlays, the window switcher and the lock screen.
+// Modal dialogs, on-screen overlays and the window switcher. The lock screen
+// has its own builder, lockScreen.js.
 
 import {rule, section, edge, focusRing} from './util.js';
 
@@ -13,8 +14,6 @@ export function dialogsCss(t) {
         '.modal-dialog StEntry',
         '.prompt-dialog StEntry',
         '.run-dialog StEntry',
-        '.unlock-dialog .login-dialog-prompt-entry',
-        '.login-dialog .login-dialog-prompt-entry',
     ];
     const st = s => entries.map(x => `${x}${s}`);
 
@@ -120,17 +119,6 @@ export function dialogsCss(t) {
         rule(['.switcher-list .item-box:selected', '.switcher-list .item-box:focus'], {
             'color': c.text,
             'background-color': c.cardOn,
-        }),
-
-        // Lock screen: a thin, large clock over the blurred wallpaper.
-        rule('.unlock-dialog-clock .unlock-dialog-clock-time', {
-            'font-weight': '300',
-        }),
-        rule('.unlock-dialog-clock .unlock-dialog-clock-date', {
-            'font-weight': '500',
-        }),
-        rule('.unlock-dialog .user-widget .user-icon', {
-            'border': edge(c.borderStrong),
         }),
     ]);
 }
