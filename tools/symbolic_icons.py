@@ -214,3 +214,11 @@ ICONS += [
     {"names": ["system-log-out-symbolic", "application-exit-symbolic"],
      "layers": [("s", "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9")]},
 ]
+
+LOCK = rect(3, 11, 18, 11, 2) + "M7 11V7a5 5 0 0 1 10 0v4"
+ICONS += [
+    {"names": ["system-lock-screen-symbolic", "changes-prevent-symbolic", "channel-secure-symbolic",
+               "network-wireless-encrypted-symbolic"], "layers": [("s", LOCK)]},
+    {"names": ["changes-allow-symbolic", "channel-insecure-symbolic"],
+     "layers": [("s", rect(3, 11, 18, 11, 2) + "M7 11V7a5 5 0 0 1 9.9-1")]},
+]
