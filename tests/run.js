@@ -214,6 +214,7 @@ const COMPONENT_MARKERS = {
     'notifications-style': '/* Notifications and calendar */',
     'menus-style': '/* Menus and tooltips */',
     'dialogs-style': '/* Dialogs and overlays */',
+    'lock-screen-style': '/* Lock screen */',
     'overview-style': '/* Overview */',
 };
 
