@@ -297,6 +297,20 @@ test('terminal palette has both variants with 16 colours each', () => {
     }
 });
 
+test('light terminal colours are readable on the light background', () => {
+    const text = buildTerminalPalette(Model.defaults(), {mode: 'light'});
+    const body = text.split('[Light]')[1].split('\n[')[0];
+    const bg = Tokens.parseHex(/^Background=(#\w{6})$/m.exec(body)[1]);
+    for (let i = 0; i < 16; i++) {
+        if (i === 0)
+            continue; // Black is a background colour in most programs.
+        const c = Tokens.parseHex(new RegExp(`^Color${i}=(#\\w{6})$`, 'm').exec(body)[1]);
+        const min = i === 7 ? 3 : 4.5;
+        const ratio = Tokens.contrast(c, bg);
+        assert(ratio >= min, `Color${i}: ${ratio.toFixed(2)}`);
+    }
+});
+
 test('terminal cursor follows the accent', () => {
     const blue = buildTerminalPalette({...Model.defaults(), accent: 'blue'}, {mode: 'dark'});
     assert(/^Cursor=#78a6e0$/mi.test(blue), 'dark cursor is not Cool Blue');
