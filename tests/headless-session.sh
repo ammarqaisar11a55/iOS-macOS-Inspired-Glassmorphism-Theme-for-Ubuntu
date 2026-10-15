@@ -132,6 +132,7 @@ check "terminal profile uses the glass palette" "$(sys "$PROFILE" palette)" Ubun
 check "terminal profile is translucent (light)" "$(sys "$PROFILE" opacity)" 0.93999999999999995
 [ -f "$HOME/.local/share/icons/Ubuntu-Glass/scalable/places/folder.svg" ] && ok "folder icons installed" || fail "folder icons installed"
 [ -f "$HOME/.local/share/icons/Ubuntu-Glass/scalable/mimetypes/text-x-generic.svg" ] && ok "file icons installed" || fail "file icons installed"
+[ -f "$HOME/.local/share/icons/Ubuntu-Glass/symbolic/battery-level-50-symbolic.svg" ] && ok "symbolic icons installed" || fail "symbolic icons installed"
 check "wallpaper untouched by default" "$(sys $BG picture-uri)" "$ORIG_WALL"
 check "icon theme untouched by default" "$(sys $IFACE icon-theme)" Yaru
 shot 01-light-desktop
