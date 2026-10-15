@@ -282,3 +282,8 @@ ICONS += [
     {"names": ["view-list-symbolic", "view-list-bullet-symbolic"],
      "layers": [("s", "M3 6h.01M3 12h.01M3 18h.01M8 6h13M8 12h13M8 18h13")]},
 ]
+
+ICONS += [
+    {"names": ["user-trash-symbolic", "edit-delete-symbolic", "user-trash-full-symbolic"],
+     "layers": [("s", "M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2")]},
+]
