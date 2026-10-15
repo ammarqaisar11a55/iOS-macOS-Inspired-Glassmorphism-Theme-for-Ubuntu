@@ -30,6 +30,7 @@ export const KEYS = Object.freeze({
     'notifications-style': bool(true),
     'menus-style': bool(true),
     'dialogs-style': bool(true),
+    'lock-screen-style': bool(true),
     'overview-style': bool(true),
     'window-style': bool(true),
     'terminal-style': bool(true),
@@ -47,14 +48,15 @@ export const STYLE_KEYS = Object.freeze([
     'glass-effects', 'transparency', 'glass-borders', 'shadows',
     'rounded-corners', 'glass-intensity', 'accent', 'appearance',
     'panel-style', 'dock-style', 'dock-animations', 'quick-settings-style',
-    'notifications-style', 'menus-style', 'dialogs-style', 'overview-style',
-    'reduced-motion', 'high-contrast',
+    'notifications-style', 'menus-style', 'dialogs-style', 'lock-screen-style',
+    'overview-style', 'reduced-motion', 'high-contrast',
 ]);
 
 /** Component switches, used by "enable all" and by the stylesheet builder. */
 export const COMPONENT_KEYS = Object.freeze([
     'panel-style', 'dock-style', 'quick-settings-style', 'notifications-style',
-    'menus-style', 'dialogs-style', 'overview-style', 'window-style', 'terminal-style',
+    'menus-style', 'dialogs-style', 'lock-screen-style', 'overview-style', 'window-style',
+    'terminal-style',
 ]);
 
 // Presets only describe the look of the glass. They never touch wallpaper,
