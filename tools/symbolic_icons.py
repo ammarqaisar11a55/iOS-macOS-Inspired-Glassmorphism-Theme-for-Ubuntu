@@ -62,3 +62,12 @@ ICONS += [
     {"names": ["network-wired-disconnected-symbolic", "network-wired-offline-symbolic",
                "network-wired-no-route-symbolic"], "layers": [("s", ETHERNET, DIM), ("s", "M2 2l20 20")]},
 ]
+
+# Bluetooth rune.
+BLUETOOTH = "m7 7 10 10-5 5V2l5 5L7 17"
+ICONS += [
+    {"names": ["bluetooth-active-symbolic", "bluetooth-symbolic", "bluetooth-disconnected-symbolic"],
+     "layers": [("s", BLUETOOTH)]},
+    {"names": ["bluetooth-disabled-symbolic", "bluetooth-hardware-disabled-symbolic"],
+     "layers": [("s", BLUETOOTH, DIM), ("s", "M3 3l18 18")]},
+]
