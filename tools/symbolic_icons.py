@@ -204,3 +204,8 @@ ICONS += [
     {"names": ["system-shutdown-symbolic", "system-power-symbolic", "gnome-power-manager-symbolic"],
      "layers": [("s", "M12 2v10M18.4 6.6a9 9 0 1 1-12.77.04")]},
 ]
+
+ICONS += [
+    {"names": ["system-reboot-symbolic", "view-refresh-symbolic", "system-restart-symbolic"],
+     "layers": [("s", "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8M3 3v5h5")]},
+]
