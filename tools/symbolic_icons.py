@@ -148,3 +148,13 @@ ICONS += [
      "layers": [("s", "M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1"
                       "a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3")]},
 ]
+
+# Sun for screen brightness.
+SUN = circle(12, 12, 4) + ("M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2"
+                           "M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41")
+ICONS += [
+    {"names": ["display-brightness-symbolic", "display-brightness-high-symbolic",
+               "display-brightness-medium-symbolic", "display-brightness-low-symbolic",
+               "weather-clear-symbolic", "keyboard-brightness-symbolic"], "layers": [("s", SUN)]},
+    {"names": ["display-brightness-off-symbolic"], "layers": [("s", SUN, DIM)]},
+]
