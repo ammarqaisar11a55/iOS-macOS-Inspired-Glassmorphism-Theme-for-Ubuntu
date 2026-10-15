@@ -364,3 +364,9 @@ ICONS += [
     {"names": ["dialog-error-symbolic", "computer-fail-symbolic"],
      "layers": [("s", circle(12, 12, 10) + "M12 8v4M12 16h.01", {"class": "error"})]},
 ]
+
+ICONS += [
+    {"names": ["avatar-default-symbolic", "system-users-symbolic", "user-info-symbolic", "person-symbolic",
+               "org.gnome.Settings-users-symbolic"],
+     "layers": [("s", circle(12, 7, 4) + "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2")]},
+]
