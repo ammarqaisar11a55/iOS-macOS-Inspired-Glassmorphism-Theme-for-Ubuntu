@@ -370,3 +370,10 @@ ICONS += [
                "org.gnome.Settings-users-symbolic"],
      "layers": [("s", circle(12, 7, 4) + "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2")]},
 ]
+
+ICONS += [
+    {"names": ["preferences-desktop-accessibility-symbolic", "org.gnome.Settings-accessibility-symbolic",
+               "accessibility-symbolic"],
+     "layers": [("s", circle(16, 4, 1) + "M18 19l1-7-6 1M5 8l3-3 5.5 3-2.36 3.5M4.24 14.5a5 5 0 0 0 6.88 6"
+                      "M13.76 17.5a5 5 0 0 0-6.88-6")]},
+]
