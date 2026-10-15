@@ -17,9 +17,13 @@ const ANSI = {
         '#1E1F24', '#EC6A62', '#5BC287', '#E9B84E', '#7AA7E0', '#C77AA4', '#5FB8B5', '#D5D4D0',
         '#6E6F76', '#F28C85', '#80D3A3', '#F2CB74', '#9DC0EC', '#D99BBE', '#86CFCC', '#F2F1EE',
     ],
+    // On paper, "white" cannot be white or text printed in it disappears.
+    // It takes the design's secondary and tertiary text greys instead, so it
+    // keeps its role as quieter text. Every entry but 7 is at least 4.5:1
+    // against the background; 7 is 3.3:1, the design's tertiary text.
     light: [
-        '#2A2A2D', '#C63C34', '#2C8A52', '#9A6A10', '#2F6DB5', '#8E3A6A', '#1E7A78', '#D9D8D5',
-        '#6E6E73', '#A9302A', '#226E41', '#7E560C', '#245894', '#732E56', '#17615F', '#F4F3F0',
+        '#2A2A2D', '#C63C34', '#267A49', '#9A6A10', '#2F6DB5', '#8E3A6A', '#1E7A78', '#8C8B8A',
+        '#6E6E73', '#A9302A', '#226E41', '#7E560C', '#245894', '#732E56', '#17615F', '#5D5C5B',
     ],
 };
 
