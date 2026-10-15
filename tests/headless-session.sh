@@ -144,13 +144,13 @@ for pair in "panel-style:/* Top bar */" "dock-style:/* Dock */" \
             "quick-settings-style:/* Quick settings */" \
             "notifications-style:/* Notifications and calendar */" \
             "menus-style:/* Menus and tooltips */" "dialogs-style:/* Dialogs and overlays */" \
-            "overview-style:/* Overview */"; do
+            "lock-screen-style:/* Lock screen */" "overview-style:/* Overview */"; do
     key="${pair%%:*}"; marker="${pair#*:}"
     gset "$key" false
     css="$(sheet)"
     lacks "$key off removes its rules" "$css" "$marker"
     others=$(grep -c -E '^/\* [A-Za-z ]+ \*/$' <<<"$css")
-    check "$key off leaves the other 6 sections" "$others" 6
+    check "$key off leaves the other 7 sections" "$others" 7
     gset "$key" true
     contains "$key on restores its rules" "$(sheet)" "$marker"
 done
@@ -297,6 +297,25 @@ gnome-extensions prefs "$UUID" 2>/dev/null; sleep 5
 contains "Glass Theme Settings window opens" "$(js "global.get_window_actors().map(a => a.meta_window.title).join(',')")" "Glass Theme Settings"
 shot 05-settings
 lacks "settings window has no script errors" "$(journalctl --user -q --since '-20s' 2>/dev/null | grep -i 'ubuntu-glass' | grep -i 'error' || true)$(grep -i 'JS ERROR' "$HOME/shell.log" | grep -i 'prefs' || true)" "ERROR"
+
+# --- Lock screen ---------------------------------------------------------------
+echo "== lock screen"
+alive "before lock screen"
+lockjs() { js "(() => { const f = (a, c) => a.has_style_class_name?.(c) ? a : a.get_children().map(k => f(k, c)).find(Boolean); const g = Main.layoutManager.screenShieldGroup; $1 })()"; }
+order() { lockjs "const c = f(g, 'unlock-dialog-clock'); return c ? c.get_children().map(k => k.style_class.replace('unlock-dialog-clock-', '')).join(',') : 'none';"; }
+brightness() { lockjs "const out = []; const w = a => { const e = a.get_effect?.('blur'); if (e) out.push(e.brightness.toFixed(2)); a.get_children().forEach(w); }; w(g); return out[0] ?? 'none';"; }
+js "Main.screenShield.lock(false)" >/dev/null; sleep 3
+check "screen locks" "$(js "Main.screenShield.locked")" true
+check "lock screen shows the date above the time" "$(order)" "date,time,hint"
+check "light lock screen brightens the blur" "$(brightness)" 0.95
+contains "lock screen stylesheet loaded" "$(sheet)" "/* Lock screen */"
+gset lock-screen-style false; sleep 0.5
+check "lock-screen-style off restores GNOME's clock order" "$(order)" "time,date,hint"
+check "lock-screen-style off restores GNOME's blur brightness" "$(brightness)" 0.65
+gset lock-screen-style true; sleep 0.5
+check "lock-screen-style on reorders the clock again" "$(order)" "date,time,hint"
+js "Main.screenShield.deactivate(false)" >/dev/null; sleep 2
+check "screen unlocks" "$(js "Main.screenShield.locked")" false
 
 # --- 6. Robustness ------------------------------------------------------------
 echo "== robustness"
