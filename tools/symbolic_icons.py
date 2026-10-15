@@ -356,3 +356,11 @@ ICONS += [
     {"names": ["dialog-information-symbolic", "help-about-symbolic", "info-symbolic", "help-info-symbolic"],
      "layers": [("s", circle(12, 12, 10) + "M12 16v-4M12 8h.01")]},
 ]
+
+ALERT = "m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3M12 9v4M12 17h.01"
+ICONS += [
+    {"names": ["dialog-warning-symbolic", "emblem-important-symbolic", "software-update-urgent-symbolic"],
+     "layers": [("s", ALERT, {"class": "warning"})]},
+    {"names": ["dialog-error-symbolic", "computer-fail-symbolic"],
+     "layers": [("s", circle(12, 12, 10) + "M12 8v4M12 16h.01", {"class": "error"})]},
+]
