@@ -222,3 +222,9 @@ ICONS += [
     {"names": ["changes-allow-symbolic", "channel-insecure-symbolic"],
      "layers": [("s", rect(3, 11, 18, 11, 2) + "M7 11V7a5 5 0 0 1 9.9-1")]},
 ]
+
+# Suspend: a pause mark in a circle.
+ICONS += [
+    {"names": ["system-suspend-symbolic", "media-playback-pause-circle-symbolic"],
+     "layers": [("s", circle(12, 12, 10) + "M10 9v6M14 9v6")]},
+]
