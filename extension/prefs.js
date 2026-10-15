@@ -214,7 +214,9 @@ class PreferencesBuilder {
         this._switch(shell, 'menus-style', 'Menus and tooltips',
             'Popup menus, tooltips, switches and sliders.');
         this._switch(shell, 'dialogs-style', 'Dialogs and overlays',
-            'System dialogs, volume and brightness overlays, the window switcher and the lock screen.');
+            'System dialogs, volume and brightness overlays and the window switcher.');
+        this._switch(shell, 'lock-screen-style', 'Lock screen',
+            'Tinted blur, a large thin clock with the date above it, a ringed avatar and a glass password field, in dark and light.');
         this._switch(shell, 'overview-style', 'Overview and search',
             'Search field, app grid and search results.');
 
