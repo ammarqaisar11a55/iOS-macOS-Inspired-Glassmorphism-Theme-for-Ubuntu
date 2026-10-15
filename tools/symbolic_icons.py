@@ -404,3 +404,9 @@ ICONS += [
     {"names": ["media-skip-backward-symbolic"], "layers": [("s", "M19 20 9 12l10-8zM5 19V5"), ("f", "M19 20 9 12l10-8z")]},
     {"names": ["media-playback-stop-symbolic"], "layers": [("s", rect(6, 6, 12, 12, 2))]},
 ]
+
+ICONS += [
+    {"names": ["mail-unread-symbolic", "mail-message-new-symbolic", "mail-send-symbolic", "mail-read-symbolic",
+               "internet-mail-symbolic", "org.gnome.Geary-symbolic"],
+     "layers": [("s", rect(2, 4, 20, 16, 2) + "M22 7l-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7")]},
+]
