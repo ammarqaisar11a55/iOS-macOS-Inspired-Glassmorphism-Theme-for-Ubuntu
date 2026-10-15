@@ -192,3 +192,10 @@ ICONS += [
      "layers": [("s", "M8.7 3A6 6 0 0 1 18 8a21.3 21.3 0 0 0 .6 5M17 17H3s3-2 3-9a4.67 4.67 0 0 1 .3-1.7"
                       "M10.3 21a1.94 1.94 0 0 0 3.4 0M2 2l20 20")]},
 ]
+
+# Settings: two sliders, as in the design's dock and quick settings.
+ICONS += [
+    {"names": ["org.gnome.Settings-symbolic", "preferences-system-symbolic", "emblem-system-symbolic",
+               "applications-system-symbolic", "settings-symbolic", "preferences-other-symbolic"],
+     "layers": [("s", "M20 7h-9M14 17H5" + circle(17, 17, 3) + circle(7, 7, 3))]},
+]
