@@ -93,6 +93,13 @@ gsettings set $DOCK extend-height true
 gsettings set $IFACE color-scheme default
 gsettings set $IFACE icon-theme Yaru
 ORIG_WALL="$(sys $BG picture-uri)"
+PTYXIS=org.gnome.Ptyxis
+PROFILE="org.gnome.Ptyxis.Profile:/org/gnome/Ptyxis/Profiles/glasstest/"
+PALETTE_FILE="$HOME/.local/share/org.gnome.Ptyxis/palettes/Ubuntu-Glass.palette"
+gsettings set $PTYXIS profile-uuids "['glasstest']"
+gsettings set $PTYXIS default-profile-uuid glasstest
+gsettings set "$PROFILE" palette Ubuntu
+gsettings set "$PROFILE" opacity 1.0
 mkdir -p "$HOME/.config/gtk-4.0"
 echo "window { margin: 0; }" > "$HOME/.config/gtk-4.0/gtk.css"
 
@@ -120,6 +127,11 @@ contains "previous dock layout is backed up" "$(gget backup)" "dock:dock-positio
 contains "GTK 4 stylesheet imported" "$(cat "$HOME/.config/gtk-4.0/gtk.css")" 'ubuntu-glass.css'
 contains "existing gtk.css content kept" "$(cat "$HOME/.config/gtk-4.0/gtk.css")" 'window { margin: 0; }'
 [ -f "$HOME/.config/gtk-3.0/ubuntu-glass.css" ] && ok "GTK 3 stylesheet written" || fail "GTK 3 stylesheet written"
+[ -f "$PALETTE_FILE" ] && ok "terminal palette written" || fail "terminal palette written"
+check "terminal profile uses the glass palette" "$(sys "$PROFILE" palette)" Ubuntu-Glass
+check "terminal profile is translucent (light)" "$(sys "$PROFILE" opacity)" 0.93999999999999995
+[ -f "$HOME/.local/share/icons/Ubuntu-Glass/scalable/places/folder.svg" ] && ok "folder icons installed" || fail "folder icons installed"
+[ -f "$HOME/.local/share/icons/Ubuntu-Glass/scalable/mimetypes/text-x-generic.svg" ] && ok "file icons installed" || fail "file icons installed"
 check "wallpaper untouched by default" "$(sys $BG picture-uri)" "$ORIG_WALL"
 check "icon theme untouched by default" "$(sys $IFACE icon-theme)" Yaru
 shot 01-light-desktop
@@ -153,6 +165,13 @@ gset window-style false
 check "window-style off leaves the user's gtk.css as it was" "$(cat "$HOME/.config/gtk-4.0/gtk.css")" "window { margin: 0; }"
 [ ! -e "$HOME/.config/gtk-3.0/gtk.css" ] && ok "gtk.css we created is removed" || fail "gtk.css we created is removed"
 gset window-style true
+
+gset terminal-style false
+check "terminal-style off restores the palette" "$(sys "$PROFILE" palette)" Ubuntu
+check "terminal-style off restores the opacity" "$(sys "$PROFILE" opacity)" 1.0
+[ ! -e "$PALETTE_FILE" ] && ok "terminal-style off removes the palette file" || fail "terminal-style off removes the palette file"
+gset terminal-style true
+check "terminal-style on applies the palette again" "$(sys "$PROFILE" palette)" Ubuntu-Glass
 
 echo "== appearance"
 alive "before appearance"
@@ -202,6 +221,7 @@ echo "== light and dark"
 alive "before light and dark"
 gset appearance dark
 check "dark appearance switches the system style" "$(sys $IFACE color-scheme)" prefer-dark
+check "terminal opacity follows dark mode" "$(sys "$PROFILE" opacity)" 0.90000000000000002
 contains "dark stylesheet in use" "$(sheet)" "(dark)"
 shot 02-dark-desktop
 gset appearance system
@@ -304,6 +324,9 @@ check "dock length restored" "$(sys $DOCK extend-height)" true
 check "wallpaper restored" "$(sys $BG picture-uri)" "$ORIG_WALL"
 check "icon theme restored" "$(sys $IFACE icon-theme)" Yaru
 check "system style restored" "$(sys $IFACE color-scheme)" default
+check "terminal palette restored" "$(sys "$PROFILE" palette)" Ubuntu
+check "terminal opacity restored" "$(sys "$PROFILE" opacity)" 1.0
+[ ! -e "$PALETTE_FILE" ] && ok "terminal palette file removed" || fail "terminal palette file removed"
 check "backup record is empty" "$(gget backup)" "{}"
 check "no blur effects left" "$(blurs)" 0
 check "stylesheet unloaded" "$(sheet)" ""
