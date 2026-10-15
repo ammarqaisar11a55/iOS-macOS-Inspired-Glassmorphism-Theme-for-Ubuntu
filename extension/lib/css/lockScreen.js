@@ -7,11 +7,12 @@
 
 import {rule, section, edge} from './util.js';
 
-// The mockup's tint over the blurred wallpaper. GNOME already darkens the
-// blur, so the light tint is stronger than the desktop scrim to read as light.
+// The mockup's tint over the blurred wallpaper. In light mode the blur is
+// brightened by lockScreenManager.js, so the light tint can stay close to the
+// design's.
 const SCRIM = {
     dark: 'rgba(8, 8, 10, 0.42)',
-    light: 'rgba(240, 238, 234, 0.62)',
+    light: 'rgba(240, 238, 234, 0.45)',
 };
 
 /**
@@ -80,9 +81,15 @@ export function lockScreenCss(t) {
             'color': c.text,
         }),
 
-        // Password field: 340 x 46, radius 14, elevated glass.
+        // Password field: 340 x 46, radius 14, elevated glass. The width is
+        // set on the centred layout that holds the field, not on the field,
+        // so the field stays centred under the avatar. GNOME keeps an equal
+        // slot either side of the field (cancel button, spinner), about 54 px
+        // each, so the layout is 448 px for a 340 px field.
+        rule('.unlock-dialog .login-dialog-prompt-layout', {
+            'width': '448px',
+        }),
         rule(entry, {
-            'min-width': '23em',
             'padding': '12px 16px',
             'border-radius': `${t.opts.rounded ? 14 : r.md}px`,
             'font-size': '1.09em',
