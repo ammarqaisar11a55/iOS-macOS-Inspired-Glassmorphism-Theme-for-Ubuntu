@@ -209,3 +209,8 @@ ICONS += [
     {"names": ["system-reboot-symbolic", "view-refresh-symbolic", "system-restart-symbolic"],
      "layers": [("s", "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8M3 3v5h5")]},
 ]
+
+ICONS += [
+    {"names": ["system-log-out-symbolic", "application-exit-symbolic"],
+     "layers": [("s", "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9")]},
+]
