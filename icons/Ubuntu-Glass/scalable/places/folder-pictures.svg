@@ -9,5 +9,5 @@
   <path transform="scale(2.6667)" d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" fill="#5089D0"/>
   <rect x="5.3" y="19" width="53.4" height="38.3" rx="4.8" fill="url(#front)"/>
   <rect x="5.8" y="19.5" width="52.4" height="37.3" rx="4.3" fill="none" stroke="#FFFFFF" stroke-opacity="0.25"/>
-  <path transform="translate(21.0 25) scale(0.9167)" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2zM7 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" fill="none" stroke="#2B5C99" stroke-opacity="0.75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path transform="translate(21.0 25) scale(0.9167)" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2zM7 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21" fill="none" stroke="#2B5C99" stroke-opacity="0.75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
