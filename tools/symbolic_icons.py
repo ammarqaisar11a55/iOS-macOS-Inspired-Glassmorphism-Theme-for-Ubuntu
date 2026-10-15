@@ -265,3 +265,5 @@ ICONS += [
     {"names": ["edit-find-symbolic", "system-search-symbolic", "search-symbolic"],
      "layers": [("s", circle(11, 11, 8) + "M21 21l-4.3-4.3")]},
 ]
+
+ICONS += [{"names": ["open-menu-symbolic", "view-more-horizontal-symbolic"], "layers": [("s", "M4 6h16M4 12h16M4 18h16")]}]
