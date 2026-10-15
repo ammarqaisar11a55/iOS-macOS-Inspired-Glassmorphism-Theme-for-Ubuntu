@@ -4,8 +4,9 @@
 
 | What | Result |
 |---|---|
-| Unit tests (`tests/run.js`) | 30 of 30 pass |
-| Integration test (`tests/headless.sh`) | 124 of 124 checks pass. 13 consecutive clean runs of the earlier 111-check version; the terminal and icon checks were added afterwards |
+| Unit tests (`tests/run.js`) | 31 of 31 pass |
+| Icon checks (`tests/test_icons.py`) | 140 designs, 311 symbolic icons; all pass |
+| Integration test (`tests/headless.sh`) | 125 of 125 checks pass. 13 consecutive clean runs of the earlier 111-check version; the terminal and icon checks were added afterwards |
 | Open issue | An intermittent shell freeze seen earlier in development, cause not identified. See below. |
 | Tested on | Ubuntu 26.04.1 LTS, GNOME Shell 50.1, Wayland, Intel graphics |
 | Not tested | GNOME Shell 46 to 49, a real (non-sandboxed) desktop session, X11, multiple monitors, HiDPI scaling |
@@ -30,6 +31,16 @@ gsettings set org.gnome.shell disable-user-extensions true
 ```
 
 Then please report what you were doing, especially whether a wallpaper or preset had just been changed.
+
+## Icon checks
+
+```bash
+python3 tests/test_icons.py
+```
+
+Every symbolic design has names that end in `-symbolic` and no name is claimed by two designs; every generated icon is valid SVG, contains no strokes (GNOME would not recolour them) and uses the standard symbolic ink; every directory in `index.theme` exists; and the status icons GNOME Shell asks for most are present.
+
+The icons were also checked by eye in the sandbox: GNOME Shell recoloured them white on dark, dark on light and dark on the accent colour, and Files recoloured the sidebar icons.
 
 ## Unit tests
 
