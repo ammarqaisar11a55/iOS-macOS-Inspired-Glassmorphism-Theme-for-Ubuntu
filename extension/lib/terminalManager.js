@@ -76,8 +76,12 @@ export class TerminalManager {
                 this._writePalette(style.palette);
                 if (!profile)
                     return;
-                this._backup.saveSetting('terminal:palette', profile, 'palette');
-                this._backup.saveSetting('terminal:opacity', profile, 'opacity');
+                // Never record the theme's own palette as the user's: that
+                // happens if the backup was lost while the theme was on.
+                if (profile.get_string('palette') !== PALETTE_ID) {
+                    this._backup.saveSetting('terminal:palette', profile, 'palette');
+                    this._backup.saveSetting('terminal:opacity', profile, 'opacity');
+                }
                 if (profile.get_string('palette') !== PALETTE_ID)
                     profile.set_string('palette', PALETTE_ID);
                 if (Math.abs(profile.get_double('opacity') - style.opacity) > 0.001)
@@ -86,8 +90,14 @@ export class TerminalManager {
             }
 
             if (profile) {
-                this._backup.restoreSetting('terminal:palette', profile, 'palette');
+                const restored = this._backup.restoreSetting('terminal:palette', profile, 'palette');
                 this._backup.restoreSetting('terminal:opacity', profile, 'opacity');
+                // No record but still on our palette: fall back to Ptyxis's
+                // defaults rather than leave a palette whose file is gone.
+                if (!restored && profile.get_string('palette') === PALETTE_ID) {
+                    profile.reset('palette');
+                    profile.reset('opacity');
+                }
             }
             if (GLib.file_test(this._paletteFile, GLib.FileTest.EXISTS))
                 GLib.unlink(this._paletteFile);
