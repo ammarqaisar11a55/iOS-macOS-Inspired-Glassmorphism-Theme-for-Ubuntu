@@ -384,3 +384,15 @@ ICONS += [
      "layers": [("s", "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1"
                       "c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z")]},
 ]
+
+ICONS += [
+    {"names": ["video-display-symbolic", "org.gnome.Settings-displays-symbolic", "computer-symbolic",
+               "preferences-desktop-display-symbolic", "user-desktop-symbolic"],
+     "layers": [("s", rect(2, 3, 20, 14, 2) + "M8 21h8M12 17v4")]},
+    {"names": ["input-keyboard-symbolic", "org.gnome.Settings-keyboard-symbolic"],
+     "layers": [("s", rect(2, 4, 20, 16, 2) + "M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M7 16h10")]},
+    {"names": ["phone-symbolic", "phone-apple-iphone-symbolic", "smartphone-symbolic"],
+     "layers": [("s", rect(5, 2, 14, 20, 2) + "M12 18h.01")]},
+    {"names": ["video-joined-displays-symbolic", "tv-symbolic"],
+     "layers": [("s", rect(2, 7, 20, 15, 2) + "M17 2l-5 5-5-5")]},
+]
