@@ -205,39 +205,83 @@ def _circle(center, r, steps=16):
              center[1] + r * math.sin(2 * math.pi * k / steps)) for k in range(steps)]
 
 
+def _turn(a, p, b):
+    d1 = math.atan2(p[1] - a[1], p[0] - a[0])
+    d2 = math.atan2(b[1] - p[1], b[0] - p[0])
+    return abs((d2 - d1 + math.pi) % (2 * math.pi) - math.pi)
+
+
+def _pieces(run, r, sign):
+    """Quadrilateral per segment plus a disc per vertex: robust for any shape."""
+    parts = []
+    for a, b in zip(run, run[1:]):
+        length = math.dist(a, b)
+        nx, ny = -(b[1] - a[1]) / length * r, (b[0] - a[0]) / length * r
+        parts.append(_polygon([(a[0] + nx, a[1] + ny), (b[0] + nx, b[1] + ny),
+                               (b[0] - nx, b[1] - ny), (a[0] - nx, a[1] - ny)], sign))
+    parts += [_polygon(_circle(p, r, 20), sign) for p in run]
+    return parts
+
+
+def _ribbon(run, r, sign):
+    """One continuous outline for a smooth run, with round ends."""
+    normals = []
+    for k, p in enumerate(run):
+        a = run[k - 1] if k > 0 else p
+        b = run[k + 1] if k < len(run) - 1 else p
+        dx, dy = b[0] - a[0], b[1] - a[1]
+        length = math.hypot(dx, dy) or 1
+        normals.append((-dy / length * r, dx / length * r))
+    left = [(p[0] + n[0], p[1] + n[1]) for p, n in zip(run, normals)]
+    right = [(p[0] - n[0], p[1] - n[1]) for p, n in zip(run, normals)]
+    return [_polygon(left + right[::-1], sign),
+            _polygon(_circle(run[0], r, 20), sign),
+            _polygon(_circle(run[-1], r, 20), sign)]
+
+
+def _tight(run, r):
+    """True if the run bends more sharply than the stroke is wide."""
+    for k in range(1, len(run) - 1):
+        a, p, b = run[k - 1], run[k], run[k + 1]
+        turn = _turn(a, p, b)
+        if turn > 1e-6:
+            radius = (math.dist(a, p) + math.dist(p, b)) / 2 / turn
+            if radius < r * 1.2:
+                return True
+    return False
+
+
 def outline(d, width):
     """Filled outline of `d` stroked at `width` with round caps and joins.
 
-    Returns a path string to be drawn with the non-zero fill rule.
+    Smooth stretches become a single outline; sharp corners get a round
+    join; very tight curves (smaller than the stroke) fall back to
+    overlapping pieces. Every piece is wound the same way, so drawing the
+    result with the non-zero fill rule gives the union.
     """
     r = width / 2
-    sign = 1  # Every piece is wound the same way.
+    sign = 1
     parts = []
     for pts, closed in flatten(d):
-        # Drop consecutive duplicates.
         clean = [pts[0]]
         for p in pts[1:]:
             if math.dist(p, clean[-1]) > 1e-6:
                 clean.append(p)
         if closed and len(clean) > 1 and math.dist(clean[0], clean[-1]) > 1e-6:
             clean.append(clean[0])
+        if len(clean) == 1:
+            parts.append(_polygon(_circle(clean[0], r, 20), sign))
+            continue
 
-        for a, b in zip(clean, clean[1:]):
-            length = math.dist(a, b)
-            nx, ny = -(b[1] - a[1]) / length * r, (b[0] - a[0]) / length * r
-            parts.append(_polygon([(a[0] + nx, a[1] + ny), (b[0] + nx, b[1] + ny),
-                                   (b[0] - nx, b[1] - ny), (a[0] - nx, a[1] - ny)], sign))
+        # Split at sharp corners; each run between them is smooth.
+        runs, run = [], [clean[0]]
+        for k in range(1, len(clean)):
+            run.append(clean[k])
+            if k < len(clean) - 1 and _turn(clean[k - 1], clean[k], clean[k + 1]) > math.radians(25):
+                runs.append(run)
+                run = [clean[k]]
+        runs.append(run)
 
-        # Round caps and joins. Points on a smooth curve barely turn, so only
-        # place a disc where the direction changes noticeably, at ends, and
-        # at every point of a single-point "dot".
-        for k, p in enumerate(clean):
-            if 0 < k < len(clean) - 1:
-                a, b = clean[k - 1], clean[k + 1]
-                d1 = math.atan2(p[1] - a[1], p[0] - a[0])
-                d2 = math.atan2(b[1] - p[1], b[0] - p[0])
-                turn = abs((d2 - d1 + math.pi) % (2 * math.pi) - math.pi)
-                if turn < math.radians(6):
-                    continue
-            parts.append(_polygon(_circle(p, r, 20), sign))
+        for run in runs:
+            parts += _pieces(run, r, sign) if _tight(run, r) else _ribbon(run, r, sign)
     return "".join(parts)
