@@ -454,3 +454,18 @@ ICONS += [
     {"names": ["utilities-system-monitor-symbolic", "org.gnome.SystemMonitor-symbolic", "speedometer-symbolic"],
      "layers": [("s", "M12 14l4-4M3.34 19a10 10 0 1 1 17.32 0")]},
 ]
+
+ICONS += [
+    {"names": ["view-pin-symbolic", "pin-symbolic"],
+     "layers": [("s", "M12 17v5M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1"
+                      "v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4"
+                      " 1 1 0 0 1 1 1z")]},
+    {"names": ["external-link-symbolic", "adw-external-link-symbolic", "window-new-symbolic"],
+     "layers": [("s", "M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6")]},
+    {"names": ["view-reveal-symbolic", "eye-open-negative-filled-symbolic"],
+     "layers": [("s", "M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"
+                      + circle(12, 12, 3))]},
+    {"names": ["view-conceal-symbolic", "eye-not-looking-symbolic"],
+     "layers": [("s", "M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"
+                      + circle(12, 12, 3), DIM), ("s", "M2 2l20 20")]},
+]
