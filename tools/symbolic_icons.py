@@ -287,3 +287,12 @@ ICONS += [
     {"names": ["user-trash-symbolic", "edit-delete-symbolic", "user-trash-full-symbolic"],
      "layers": [("s", "M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2")]},
 ]
+
+ICONS += [
+    {"names": ["edit-copy-symbolic"],
+     "layers": [("s", rect(8, 8, 14, 14, 2) + "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2")]},
+    {"names": ["edit-paste-symbolic"],
+     "layers": [("s", rect(8, 2, 8, 4, 1) + "M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2")]},
+    {"names": ["edit-cut-symbolic"],
+     "layers": [("s", circle(6, 6, 3) + circle(6, 18, 3) + "M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12")]},
+]
