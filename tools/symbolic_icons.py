@@ -258,3 +258,5 @@ ICONS += [
 ]
 
 ICONS += [{"names": ["list-add-symbolic", "tab-new-symbolic", "value-increase-symbolic"], "layers": [("s", "M5 12h14M12 5v14")]}]
+
+ICONS += [{"names": ["list-remove-symbolic", "value-decrease-symbolic"], "layers": [("s", "M5 12h14")]}]
