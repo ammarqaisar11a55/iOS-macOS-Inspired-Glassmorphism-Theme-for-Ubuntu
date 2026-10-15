@@ -266,4 +266,12 @@ ICONS += [
      "layers": [("s", circle(11, 11, 8) + "M21 21l-4.3-4.3")]},
 ]
 
-ICONS += [{"names": ["open-menu-symbolic", "view-more-horizontal-symbolic"], "layers": [("s", "M4 6h16M4 12h16M4 18h16")]}]
+ICONS += [{"names": ["open-menu-symbolic"], "layers": [("s", "M4 6h16M4 12h16M4 18h16")]}]
+
+# "More" menus are three dots, vertical or horizontal, not the menu lines.
+ICONS += [
+    {"names": ["view-more-symbolic", "content-loading-symbolic"],
+     "layers": [("f", circle(12, 5, 1.7) + circle(12, 12, 1.7) + circle(12, 19, 1.7))]},
+    {"names": ["view-more-horizontal-symbolic", "message-indicator-symbolic"],
+     "layers": [("f", circle(5, 12, 1.7) + circle(12, 12, 1.7) + circle(19, 12, 1.7))]},
+]
