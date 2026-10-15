@@ -186,7 +186,7 @@ export default class UbuntuGlassExtension extends Extension {
         const values = readAll(this._settings);
         const env = this._env();
         this._style.apply(buildShellCss(values, env));
-        this._lockScreen.sync(values['lock-screen-style']);
+        this._lockScreen.sync(values['lock-screen-style'], env.mode === 'light');
         this._gtk.sync(values['window-style']
             ? {gtk4: buildGtk4Css(values, env), gtk3: buildGtk3Css(values, env)}
             : null);
