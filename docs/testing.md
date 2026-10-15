@@ -4,8 +4,8 @@
 
 | What | Result |
 |---|---|
-| Unit tests (`tests/run.js`) | 27 of 27 pass |
-| Integration test (`tests/headless.sh`) | 111 of 111 checks pass; 13 consecutive clean runs at the time of writing |
+| Unit tests (`tests/run.js`) | 30 of 30 pass |
+| Integration test (`tests/headless.sh`) | 124 of 124 checks pass. 13 consecutive clean runs of the earlier 111-check version; the terminal and icon checks were added afterwards |
 | Open issue | An intermittent shell freeze seen earlier in development, cause not identified. See below. |
 | Tested on | Ubuntu 26.04.1 LTS, GNOME Shell 50.1, Wayland, Intel graphics |
 | Not tested | GNOME Shell 46 to 49, a real (non-sandboxed) desktop session, X11, multiple monitors, HiDPI scaling |
@@ -41,6 +41,7 @@ Covers the modules that have no GNOME Shell dependencies:
 
 - **Settings model.** The schema and the model agree on every key and default. Invalid values are rejected or clamped. Each preset is recognised from its own values, and no preset touches wallpaper, icons, accent, appearance mode or component switches. Export and import round-trip; foreign, malformed and partly invalid files are handled.
 - **Tokens.** The mockup's colour values are reproduced exactly at full intensity. Glass off, transparency off, intensity, borders, shadows, rounded corners, reduced motion and high contrast each change the tokens as documented. Primary text keeps a contrast ratio of at least 4.5:1 on elevated and window surfaces against the worst possible backdrop, and accent ink is readable on every accent in both modes.
+- **Terminal.** The palette has both variants with all 16 colours, the cursor follows the accent, and opacity follows glass, intensity and transparency.
 - **Stylesheets.** Output is well formed for every preset, mode and accent (60 combinations). Each component switch removes its own section and no other. Every key that is supposed to affect the stylesheet does. Reduced motion leaves no transition behind.
 
 ## Integration test
@@ -58,15 +59,15 @@ What it checks, in order:
 | Area | Checks |
 |---|---|
 | Install | `install.sh` succeeds; schema compiled; icon theme installed |
-| Enable | Extension active; stylesheet loaded; dock moved and its old layout backed up; top bar and dock blurred; GTK stylesheets written with the user's existing `gtk.css` content kept; wallpaper and icons untouched by default |
-| Components | Each of the seven shell components, switched off, removes its own rules and leaves the other six; switched on, restores them. Dock layout and GTK stylesheets are removed and restored by their switches |
+| Enable | Extension active; stylesheet loaded; dock moved and its old layout backed up; top bar and dock blurred; GTK stylesheets written with the user's existing `gtk.css` content kept; terminal palette written and applied to the default profile; folder and file icons installed; wallpaper and icons untouched by default |
+| Components | Each of the seven shell components, switched off, removes its own rules and leaves the other six; switched on, restores them. Dock layout, GTK stylesheets and the terminal palette are removed and restored by their switches |
 | Appearance | Blur on/off and intensity; glass on/off; transparency; glass intensity; borders; shadows; rounded corners; accent; reduced motion (including the dock's animation time); high contrast |
 | Light and dark | Forcing a mode switches the system style and restores it; the theme follows a system change; a manual system change overrides a forced mode |
 | Desktop | Wallpaper applied for both modes, changed, and restored; icon theme applied and restored; Glass tile shown and hidden |
 | Presets | Manual changes become Custom and return to the preset when matched; each of the five presets applies its values and leaves wallpaper and accent alone |
 | Interface | Glass tile present in Quick Settings; Glass Theme Settings window opens without script errors |
 | Robustness | A corrupt backup record and a full settings reset are both survived |
-| Disable | Dock, wallpaper, icon theme, system style and GTK files all restored; backup record empty; no blur effects or stylesheet left; preferences kept; repeated enable/disable ends clean |
+| Disable | Dock, wallpaper, icon theme, system style, GTK files and terminal profile all restored; backup record empty; no blur effects or stylesheet left; preferences kept; repeated enable/disable ends clean |
 | Uninstall | `uninstall.sh --purge` succeeds and removes the files |
 | Log | No JavaScript errors in the shell log |
 
@@ -94,6 +95,8 @@ The sandbox itself sometimes starts with no extensions switched on, which stops 
 
 ## Not verified
 
+- The terminal as it looks with a shell running. The sandbox has no systemd user session, so Ptyxis applies the palette and translucency but cannot start a shell there.
+- Folder glyphs for Documents, Downloads and the other special folders in a real home; the sandbox has no XDG user-directory configuration, so only Desktop showed its glyph.
 - Appearance and behaviour on the lock screen.
 - Whether running GTK 4 applications follow a light/dark switch without a restart.
 - The GTK 3 stylesheet in a real GTK 3 application.
