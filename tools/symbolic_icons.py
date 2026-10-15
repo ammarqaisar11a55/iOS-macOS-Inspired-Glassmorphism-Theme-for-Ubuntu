@@ -446,3 +446,11 @@ ICONS += [
     {"names": ["folder-archive-symbolic", "application-x-archive-symbolic", "archive-symbolic"],
      "layers": [("s", rect(2, 3, 20, 5, 1) + "M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8M10 12h4")]},
 ]
+
+ICONS += [
+    {"names": ["accessories-calculator-symbolic", "org.gnome.Calculator-symbolic"],
+     "layers": [("s", rect(4, 2, 16, 20, 2) + "M8 6h8M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"
+                      "M8 18h.01M12 18h.01M16 18h.01")]},
+    {"names": ["utilities-system-monitor-symbolic", "org.gnome.SystemMonitor-symbolic", "speedometer-symbolic"],
+     "layers": [("s", "M12 14l4-4M3.34 19a10 10 0 1 1 17.32 0")]},
+]
