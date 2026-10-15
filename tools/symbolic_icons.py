@@ -171,3 +171,14 @@ ICONS += [
     {"names": ["dark-mode-symbolic", "display-dark-mode-symbolic", "preferences-desktop-appearance-symbolic"],
      "layers": [("s", circle(12, 12, 10)), ("f", "M12 6a6 6 0 0 1 0 12z")]},
 ]
+
+# Power profiles: leaf for saver, gauge for balanced, bolt for performance.
+ICONS += [
+    {"names": ["power-profile-power-saver-symbolic"],
+     "layers": [("s", "M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"
+                      "M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12")]},
+    {"names": ["power-profile-balanced-symbolic"], "layers": [("s", "M12 14l4-4M3.34 19a10 10 0 1 1 17.32 0")]},
+    {"names": ["power-profile-performance-symbolic"],
+     "layers": [("s", "M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7"
+                      "a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z")]},
+]
