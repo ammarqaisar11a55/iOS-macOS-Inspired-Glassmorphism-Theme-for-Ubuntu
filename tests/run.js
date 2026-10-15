@@ -7,6 +7,7 @@ import * as Model from '../extension/lib/model.js';
 import * as Tokens from '../extension/lib/tokens.js';
 import {buildShellCss} from '../extension/lib/css/index.js';
 import {buildGtk3Css, buildGtk4Css} from '../extension/lib/css/gtk.js';
+import {buildTerminalPalette, terminalOpacity} from '../extension/lib/css/terminal.js';
 
 let passed = 0;
 const failures = [];
@@ -280,6 +281,34 @@ test('reduced motion and system animations off remove transitions', () => {
         buildShellCss(Model.defaults(), {mode: 'dark', systemAnimations: false}),
     ])
         assert(!/transition-duration: [1-9]/.test(css), 'a transition survived');
+});
+
+// --- Terminal --------------------------------------------------------------
+
+test('terminal palette has both variants with 16 colours each', () => {
+    const text = buildTerminalPalette(Model.defaults(), {mode: 'dark'});
+    assert(text.includes('[Palette]') && text.includes('Name=Ubuntu Glass'), 'missing header');
+    for (const section of ['[Light]', '[Dark]']) {
+        const body = text.split(section)[1].split('\n[')[0];
+        for (let i = 0; i < 16; i++)
+            assert(new RegExp(`^Color${i}=#[0-9A-Fa-f]{6}$`, 'm').test(body), `${section} Color${i}`);
+        for (const key of ['Background', 'Foreground', 'Cursor'])
+            assert(new RegExp(`^${key}=#[0-9A-Fa-f]{6}$`, 'm').test(body), `${section} ${key}`);
+    }
+});
+
+test('terminal cursor follows the accent', () => {
+    const blue = buildTerminalPalette({...Model.defaults(), accent: 'blue'}, {mode: 'dark'});
+    assert(/^Cursor=#78a6e0$/mi.test(blue), 'dark cursor is not Cool Blue');
+});
+
+test('terminal opacity follows glass, intensity and transparency', () => {
+    const d = Model.defaults();
+    equal(terminalOpacity(d, {mode: 'dark'}), 0.9);
+    equal(terminalOpacity(d, {mode: 'light'}), 0.94);
+    equal(terminalOpacity({...d, 'glass-effects': false}, {mode: 'dark'}), 1);
+    equal(terminalOpacity({...d, 'glass-intensity': 0}, {mode: 'dark'}), 1);
+    assert(terminalOpacity({...d, transparency: false}, {mode: 'dark'}) >= 0.96, 'transparency off');
 });
 
 // --- Report ----------------------------------------------------------------
