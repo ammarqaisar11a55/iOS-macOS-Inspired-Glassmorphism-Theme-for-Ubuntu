@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="front" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7AAAE3"/>
+      <stop offset="1" stop-color="#5089D0"/>
+    </linearGradient>
+  </defs>
+  <path transform="translate(0 1) scale(2.6667)" d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" fill="#000000" opacity="0.16"/>
+  <path transform="scale(2.6667)" d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" fill="#5089D0"/>
+  <rect x="5.3" y="19" width="53.4" height="38.3" rx="4.8" fill="url(#front)"/>
+  <rect x="5.8" y="19.5" width="52.4" height="37.3" rx="4.3" fill="none" stroke="#FFFFFF" stroke-opacity="0.25"/>
+  <path transform="translate(21.0 25) scale(0.9167)" d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7ZM14 2v4a2 2 0 0 0 2 2h4" fill="none" stroke="#2B5C99" stroke-opacity="0.75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

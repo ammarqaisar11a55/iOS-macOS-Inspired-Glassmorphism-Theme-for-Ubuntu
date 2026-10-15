@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <path d="M15 4h24l14 14v38a4 4 0 0 1-4 4H15a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z" transform="translate(0 1)" fill="#000000" opacity="0.14"/>
+  <path d="M15 4h24l14 14v38a4 4 0 0 1-4 4H15a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z" fill="#FBFAF8" stroke="#000000" stroke-opacity="0.12"/>
+  <path d="M39 4v10a4 4 0 0 0 4 4h10" fill="#E9E7E3" stroke="#000000" stroke-opacity="0.12" stroke-linejoin="round"/>
+  <rect x="15" y="43" width="27.6" height="11" rx="3" fill="#7A7A80"/>
+  <text x="28.8" y="51.2" text-anchor="middle" font-family="Ubuntu Sans, sans-serif" font-size="8" font-weight="700" letter-spacing="0.2" fill="#FFFFFF">ZIP</text>
+</svg>
