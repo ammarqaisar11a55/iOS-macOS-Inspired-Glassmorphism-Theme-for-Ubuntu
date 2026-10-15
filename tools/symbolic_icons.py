@@ -415,3 +415,10 @@ ICONS += [
     {"names": ["x-office-calendar-symbolic", "org.gnome.Calendar-symbolic", "office-calendar-symbolic",
                "month-symbolic"], "layers": [("s", rect(3, 4, 18, 18, 2) + "M16 2v4M8 2v4M3 10h18")]},
 ]
+
+CAMERA = "M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" + circle(12, 13, 3)
+ICONS += [
+    {"names": ["camera-photo-symbolic", "camera-web-symbolic", "org.gnome.Snapshot-symbolic",
+               "screenshooter-symbolic", "org.gnome.Screenshot-symbolic"], "layers": [("s", CAMERA)]},
+    {"names": ["camera-disabled-symbolic", "camera-web-disabled-symbolic"], "layers": [("s", CAMERA, DIM), ("s", "M2 2l20 20")]},
+]
