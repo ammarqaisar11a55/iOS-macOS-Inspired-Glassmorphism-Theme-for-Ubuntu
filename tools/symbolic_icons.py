@@ -236,3 +236,5 @@ ICONS += [
 ]
 
 ICONS += [{"names": ["window-minimize-symbolic"], "layers": [("s", "M6 12h12")]}]
+
+ICONS += [{"names": ["window-maximize-symbolic"], "layers": [("s", rect(6, 6, 12, 12, 2))]}]
