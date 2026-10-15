@@ -182,3 +182,13 @@ ICONS += [
      "layers": [("s", "M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7"
                       "a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z")]},
 ]
+
+# Bell for notifications; Do Not Disturb strikes it through.
+BELL = "M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"
+ICONS += [
+    {"names": ["preferences-system-notifications-symbolic", "notifications-symbolic",
+               "org.gnome.Settings-notifications-symbolic", "alarm-symbolic"], "layers": [("s", BELL)]},
+    {"names": ["notifications-disabled-symbolic", "do-not-disturb-symbolic", "user-busy-symbolic"],
+     "layers": [("s", "M8.7 3A6 6 0 0 1 18 8a21.3 21.3 0 0 0 .6 5M17 17H3s3-2 3-9a4.67 4.67 0 0 1 .3-1.7"
+                      "M10.3 21a1.94 1.94 0 0 0 3.4 0M2 2l20 20")]},
+]
