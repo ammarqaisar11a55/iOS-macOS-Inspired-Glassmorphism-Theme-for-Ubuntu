@@ -396,3 +396,11 @@ ICONS += [
     {"names": ["video-joined-displays-symbolic", "tv-symbolic"],
      "layers": [("s", rect(2, 7, 20, 15, 2) + "M17 2l-5 5-5-5")]},
 ]
+
+ICONS += [
+    {"names": ["media-playback-start-symbolic"], "layers": [("s", "M7 4l13 8-13 8z"), ("f", "M7 4l13 8-13 8z")]},
+    {"names": ["media-playback-pause-symbolic"], "layers": [("s", "M8 4v16M16 4v16")]},
+    {"names": ["media-skip-forward-symbolic"], "layers": [("s", "M5 4l10 8-10 8zM19 5v14"), ("f", "M5 4l10 8-10 8z")]},
+    {"names": ["media-skip-backward-symbolic"], "layers": [("s", "M19 20 9 12l10-8zM5 19V5"), ("f", "M19 20 9 12l10-8z")]},
+    {"names": ["media-playback-stop-symbolic"], "layers": [("s", rect(6, 6, 12, 12, 2))]},
+]
