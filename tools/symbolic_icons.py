@@ -275,3 +275,10 @@ ICONS += [
     {"names": ["view-more-horizontal-symbolic", "message-indicator-symbolic"],
      "layers": [("f", circle(5, 12, 1.7) + circle(12, 12, 1.7) + circle(19, 12, 1.7))]},
 ]
+
+ICONS += [
+    {"names": ["view-grid-symbolic", "view-app-grid-symbolic", "view-apps-symbolic", "start-here-symbolic"],
+     "layers": [("s", rect(3, 3, 7, 7, 1.5) + rect(14, 3, 7, 7, 1.5) + rect(14, 14, 7, 7, 1.5) + rect(3, 14, 7, 7, 1.5))]},
+    {"names": ["view-list-symbolic", "view-list-bullet-symbolic"],
+     "layers": [("s", "M3 6h.01M3 12h.01M3 18h.01M8 6h13M8 12h13M8 18h13")]},
+]
