@@ -260,3 +260,8 @@ ICONS += [
 ICONS += [{"names": ["list-add-symbolic", "tab-new-symbolic", "value-increase-symbolic"], "layers": [("s", "M5 12h14M12 5v14")]}]
 
 ICONS += [{"names": ["list-remove-symbolic", "value-decrease-symbolic"], "layers": [("s", "M5 12h14")]}]
+
+ICONS += [
+    {"names": ["edit-find-symbolic", "system-search-symbolic", "search-symbolic"],
+     "layers": [("s", circle(11, 11, 8) + "M21 21l-4.3-4.3")]},
+]
