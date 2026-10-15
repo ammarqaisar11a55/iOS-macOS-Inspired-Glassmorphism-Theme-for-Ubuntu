@@ -296,3 +296,9 @@ ICONS += [
     {"names": ["edit-cut-symbolic"],
      "layers": [("s", circle(6, 6, 3) + circle(6, 18, 3) + "M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12")]},
 ]
+
+ICONS += [
+    {"names": ["document-edit-symbolic", "edit-symbolic", "document-properties-symbolic"],
+     "layers": [("s", "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622"
+                      "l4.353-1.32a2 2 0 0 0 .83-.497zM15 5l4 4")]},
+]
