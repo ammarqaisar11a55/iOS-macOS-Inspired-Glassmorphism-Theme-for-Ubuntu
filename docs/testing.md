@@ -6,7 +6,7 @@
 |---|---|
 | Unit tests (`tests/run.js`) | 31 of 31 pass |
 | Icon checks (`tests/test_icons.py`) | 140 designs, 311 symbolic icons; all pass |
-| Integration test (`tests/headless.sh`) | 125 of 125 checks pass. 13 consecutive clean runs of the earlier 111-check version; the terminal and icon checks were added afterwards |
+| Integration test (`tests/headless.sh`) | 136 of 136 checks pass. 13 consecutive clean runs of the earlier 111-check version; the terminal and icon checks were added afterwards |
 | Open issue | An intermittent shell freeze seen earlier in development, cause not identified. See below. |
 | Tested on | Ubuntu 26.04.1 LTS, GNOME Shell 50.1, Wayland, Intel graphics |
 | Not tested | GNOME Shell 46 to 49, a real (non-sandboxed) desktop session, X11, multiple monitors, HiDPI scaling |
@@ -77,6 +77,7 @@ What it checks, in order:
 | Desktop | Wallpaper applied for both modes, changed, and restored; icon theme applied and restored; Glass tile shown and hidden |
 | Presets | Manual changes become Custom and return to the preset when matched; each of the five presets applies its values and leaves wallpaper and accent alone |
 | Interface | Glass tile present in Quick Settings; Glass Theme Settings window opens without script errors |
+| Lock screen | Screen locks; the date sits above the time; light mode brightens the blur; switching the style off restores GNOME's order and brightness, and on reapplies them; screen unlocks |
 | Robustness | A corrupt backup record and a full settings reset are both survived |
 | Disable | Dock, wallpaper, icon theme, system style, GTK files and terminal profile all restored; backup record empty; no blur effects or stylesheet left; preferences kept; repeated enable/disable ends clean |
 | Uninstall | `uninstall.sh --purge` succeeds and removes the files |
@@ -108,7 +109,6 @@ The sandbox itself sometimes starts with no extensions switched on, which stops 
 
 - The terminal in the sandbox: it has no systemd user session, so Ptyxis applies the palette and translucency but cannot start a shell there. The terminal was checked on a real desktop instead (see the README screenshot).
 - Folder glyphs for Documents, Downloads and the other special folders in a real home; the sandbox has no XDG user-directory configuration, so only Desktop showed its glyph.
-- Appearance and behaviour on the lock screen.
 - Whether running GTK 4 applications follow a light/dark switch without a restart.
 - The GTK 3 stylesheet in a real GTK 3 application.
 - Dash to Dock installed per-user (only the system Ubuntu Dock was present).
