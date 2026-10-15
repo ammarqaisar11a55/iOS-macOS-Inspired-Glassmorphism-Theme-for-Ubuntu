@@ -251,3 +251,8 @@ ICONS += [
     {"names": ["pan-up-symbolic", "go-up-symbolic"], "layers": [("s", "m18 15-6-6-6 6")]},
     {"names": ["go-next-arrow-symbolic", "mail-forward-symbolic"], "layers": [("s", "M5 12h14M12 5l7 7-7 7")]},
 ]
+
+ICONS += [
+    {"names": ["object-select-symbolic", "emblem-ok-symbolic", "emblem-default-symbolic", "checkbox-checked-symbolic"],
+     "layers": [("s", "M20 6 9 17l-5-5")]},
+]
