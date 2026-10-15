@@ -429,3 +429,9 @@ ICONS += [
     {"names": ["text-x-script-symbolic", "applications-engineering-symbolic", "code-symbolic"],
      "layers": [("s", "M16 18l6-6-6-6M8 6l-6 6 6 6")]},
 ]
+
+ICONS += [
+    {"names": ["web-browser-symbolic", "applications-internet-symbolic", "network-transmit-receive-symbolic",
+               "preferences-desktop-locale-symbolic", "globe-symbolic"],
+     "layers": [("s", circle(12, 12, 10) + "M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20")]},
+]
