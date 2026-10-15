@@ -302,3 +302,14 @@ ICONS += [
      "layers": [("s", "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622"
                       "l4.353-1.32a2 2 0 0 0 .83-.497zM15 5l4 4")]},
 ]
+
+FOLDER = ("M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13"
+          "a2 2 0 0 0 2 2Z")
+ICONS += [
+    {"names": ["user-home-symbolic", "go-home-symbolic", "folder-home-symbolic"],
+     "layers": [("s", "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0"
+                      "l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z")]},
+    {"names": ["folder-symbolic", "folder-open-symbolic", "inode-directory-symbolic", "folder-visiting-symbolic"],
+     "layers": [("s", FOLDER)]},
+    {"names": ["folder-new-symbolic"], "layers": [("s", "M12 10v6M9 13h6" + FOLDER)]},
+]
