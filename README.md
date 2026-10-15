@@ -16,9 +16,11 @@ Ubuntu Glass is a GNOME Shell extension with a settings window. Every effect can
 
 ![Files showing the blue folder icons and file-type badges](docs/screenshots/dark-files.png)
 
-![Ptyxis terminal with the Ubuntu Glass palette in dark mode](docs/screenshots/dark-terminal.png)
+| Terminal, dark | Terminal, light |
+|---|---|
+| ![Ptyxis terminal with the Ubuntu Glass palette in dark mode](docs/screenshots/dark-terminal.png) | ![Ptyxis terminal with the Ubuntu Glass palette in light mode](docs/screenshots/light-terminal.png) |
 
-Top to bottom: quick settings in both modes, the calendar and the light desktop, then Glass Theme Settings and the Tide wallpaper with the Cool Blue accent, then the file manager with the theme's folder and file icons, and last the Ptyxis terminal with the Ubuntu Glass palette. These are real screenshots of the extension on GNOME Shell 50.1 with the theme wallpaper and icon theme switched on, not mockups.
+Top to bottom: quick settings in both modes, the calendar and the light desktop, then Glass Theme Settings and the Tide wallpaper with the Cool Blue accent, then the file manager with the theme's folder and file icons, and last the Ptyxis terminal with the Ubuntu Glass palette in both modes. These are real screenshots of the extension on GNOME Shell 50.1 with the theme wallpaper and icon theme switched on, not mockups.
 
 ## What you get
 
@@ -27,7 +29,7 @@ Top to bottom: quick settings in both modes, the calendar and the light desktop,
 - Matching colours, corner radii and window controls for GTK applications.
 - Four wallpapers (Ember, Dusk, Tide, Graphite), each in a light and a dark version.
 - An icon theme with rounded app tiles for 16 common applications, blue folders, and file icons with a type badge.
-- A glass terminal: the theme's palette and translucency for Ptyxis, Ubuntu's terminal.
+- A glass terminal: the theme's palette and translucency for Ptyxis, Ubuntu's terminal. Dark is graphite glass; light is warm paper with deeper colours, every one readable against it.
 - Light and dark appearances, five accent colours, and five presets.
 - **Glass Theme Settings**, opened from the Glass tile in Quick Settings.
 
