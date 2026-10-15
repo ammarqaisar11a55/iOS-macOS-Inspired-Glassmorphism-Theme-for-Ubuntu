@@ -313,3 +313,20 @@ ICONS += [
      "layers": [("s", FOLDER)]},
     {"names": ["folder-new-symbolic"], "layers": [("s", "M12 10v6M9 13h6" + FOLDER)]},
 ]
+
+ICONS += [
+    {"names": ["folder-documents-symbolic", "x-office-document-symbolic", "text-x-generic-symbolic"],
+     "layers": [("s", "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7ZM14 2v4a2 2 0 0 0 2 2h4M10 9H8M16 13H8M16 17H8")]},
+    {"names": ["folder-download-symbolic", "document-save-symbolic", "emblem-downloads-symbolic"],
+     "layers": [("s", "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3")]},
+    {"names": ["folder-music-symbolic", "audio-x-generic-symbolic"],
+     "layers": [("s", "M9 18V5l12-2v13" + circle(6, 18, 3) + circle(18, 16, 3))]},
+    {"names": ["folder-pictures-symbolic", "image-x-generic-symbolic", "emblem-photos-symbolic"],
+     "layers": [("s", rect(3, 3, 18, 18, 2) + circle(9, 9, 2) + "M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21")]},
+    {"names": ["folder-videos-symbolic", "video-x-generic-symbolic", "camera-video-symbolic"],
+     "layers": [("s", "m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" + rect(2, 6, 14, 12, 2))]},
+    {"names": ["folder-templates-symbolic"],
+     "layers": [("s", "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7ZM14 2v4a2 2 0 0 0 2 2h4")]},
+    {"names": ["folder-publicshare-symbolic", "emblem-shared-symbolic", "send-to-symbolic"],
+     "layers": [("s", circle(18, 5, 3) + circle(6, 12, 3) + circle(18, 19, 3) + "M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98")]},
+]
