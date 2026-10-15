@@ -13,6 +13,7 @@ import Gtk from 'gi://Gtk';
 import {ExtensionPreferences} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
 import {iconThemeInstalled} from './lib/desktopManager.js';
+import {terminalAvailable} from './lib/terminalManager.js';
 import {
     ALL_ON, DECORATIVE_OFF, PRESETS,
     applyPreset, exportSettings, importSettings, readAll, restoreDefaults, writeAll,
@@ -232,6 +233,10 @@ class PreferencesBuilder {
         const apps = this._group(page, 'Applications');
         this._switch(apps, 'window-style', 'Window styling',
             'Colours, corner radius and window controls for GTK applications. Applications pick the change up when they are next started.');
+        const terminal = this._switch(apps, 'terminal-style', 'Glass terminal',
+            'The theme\'s palette and translucency for the default Ptyxis profile. Your previous palette is restored when this is off.');
+        if (!terminalAvailable())
+            this._unavailable(terminal, 'Unavailable: the Ptyxis terminal is not installed.');
 
         return page;
     }
