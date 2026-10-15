@@ -256,3 +256,5 @@ ICONS += [
     {"names": ["object-select-symbolic", "emblem-ok-symbolic", "emblem-default-symbolic", "checkbox-checked-symbolic"],
      "layers": [("s", "M20 6 9 17l-5-5")]},
 ]
+
+ICONS += [{"names": ["list-add-symbolic", "tab-new-symbolic", "value-increase-symbolic"], "layers": [("s", "M5 12h14M12 5v14")]}]
