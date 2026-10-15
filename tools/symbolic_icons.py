@@ -199,3 +199,8 @@ ICONS += [
                "applications-system-symbolic", "settings-symbolic", "preferences-other-symbolic"],
      "layers": [("s", "M20 7h-9M14 17H5" + circle(17, 17, 3) + circle(7, 7, 3))]},
 ]
+
+ICONS += [
+    {"names": ["system-shutdown-symbolic", "system-power-symbolic", "gnome-power-manager-symbolic"],
+     "layers": [("s", "M12 2v10M18.4 6.6a9 9 0 1 1-12.77.04")]},
+]
