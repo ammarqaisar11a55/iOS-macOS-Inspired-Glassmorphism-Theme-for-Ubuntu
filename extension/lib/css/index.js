@@ -10,6 +10,7 @@ import {quickSettingsCss} from './quickSettings.js';
 import {notificationsCss} from './notifications.js';
 import {menusCss} from './menus.js';
 import {dialogsCss} from './dialogs.js';
+import {lockScreenCss} from './lockScreen.js';
 import {overviewCss} from './overview.js';
 
 /**
@@ -66,6 +67,8 @@ export function buildShellCss(values, env) {
         parts.push(notificationsCss(t));
     if (values['dialogs-style'])
         parts.push(dialogsCss(t));
+    if (values['lock-screen-style'])
+        parts.push(lockScreenCss(t));
     if (values['overview-style'])
         parts.push(overviewCss(t));
 
