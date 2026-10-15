@@ -14,7 +14,9 @@ Ubuntu Glass is a GNOME Shell extension with a settings window. Every effect can
 | ![Calendar and notifications in dark mode](docs/screenshots/dark-calendar.png) | ![Light desktop with the Files window](docs/screenshots/light-desktop.png) |
 | ![Glass Theme Settings window](docs/screenshots/dark-settings.png) | ![Tide wallpaper with the Cool Blue accent](docs/screenshots/dark-tide-blue.png) |
 
-Top to bottom: quick settings in both modes, the calendar and the light desktop, then Glass Theme Settings and the Tide wallpaper with the Cool Blue accent. These are real screenshots of the extension on GNOME Shell 50.1 with the theme wallpaper and icon theme switched on, not mockups.
+![Files showing the blue folder icons and file-type badges](docs/screenshots/dark-files.png)
+
+Top to bottom: quick settings in both modes, the calendar and the light desktop, then Glass Theme Settings and the Tide wallpaper with the Cool Blue accent, and last the file manager with the theme's folder and file icons. These are real screenshots of the extension on GNOME Shell 50.1 with the theme wallpaper and icon theme switched on, not mockups.
 
 ## What you get
 
@@ -22,7 +24,8 @@ Top to bottom: quick settings in both modes, the calendar and the light desktop,
 - Glass quick settings, notifications, calendar, menus, dialogs, overlays and overview.
 - Matching colours, corner radii and window controls for GTK applications.
 - Four wallpapers (Ember, Dusk, Tide, Graphite), each in a light and a dark version.
-- An icon theme with rounded app tiles for 16 common applications.
+- An icon theme with rounded app tiles for 16 common applications, blue folders, and file icons with a type badge.
+- A glass terminal: the theme's palette and translucency for Ptyxis, Ubuntu's terminal.
 - Light and dark appearances, five accent colours, and five presets.
 - **Glass Theme Settings**, opened from the Glass tile in Quick Settings.
 
@@ -61,10 +64,11 @@ Then:
 
 ### What changes when you enable it
 
-Enabling the extension, with default settings, does three things outside the shell's own appearance:
+Enabling the extension, with default settings, does these things outside the shell's own appearance:
 
 - **Moves the dock to the bottom** as a floating bar (Ubuntu Dock / Dash to Dock settings).
 - **Writes a GTK stylesheet** to `~/.config/gtk-4.0/` and `~/.config/gtk-3.0/`, and adds one `@import` line to `gtk.css` there. Existing content in your `gtk.css` is kept.
+- **Gives the terminal the glass palette:** writes `~/.local/share/org.gnome.Ptyxis/palettes/Ubuntu-Glass.palette` and sets your default Ptyxis profile to use it, slightly translucent.
 - Nothing else. Wallpaper and icons are off by default.
 
 Each of these is a switch in Glass Theme Settings, and each is undone when you turn the switch off or disable the extension.
@@ -103,13 +107,14 @@ Each switch styles one part of the desktop. Turning one off restores the standar
 | Floating glass dock | Dock position, shape and material |
 | Dock animations | Dock hover and show/hide transitions |
 | Window styling | GTK application colours, radii and window controls |
+| Glass terminal | Palette (light and dark) and translucency for the default Ptyxis profile |
 
 ### Desktop
 
 | Switch | Effect |
 |---|---|
 | Theme wallpaper | Sets one of the four wallpapers. Your previous wallpaper is restored when off. |
-| Ubuntu Glass icons | Switches the icon theme. Your previous icon theme is restored when off. |
+| Ubuntu Glass icons | Switches the icon theme: app tiles, blue folders and file-type icons. Your previous icon theme is restored when off. |
 | Glass tile | Shows or hides the Glass tile in Quick Settings. |
 
 ### Accessibility
@@ -148,12 +153,13 @@ Changing one of those options by hand shows the preset as Custom. Setting them b
 | Background blur | `Shell.BlurEffect`, the effect GNOME uses for the lock screen | `extension/lib/blurManager.js` |
 | Dock layout | Ubuntu Dock / Dash to Dock settings | `extension/lib/dockManager.js` |
 | GTK applications | A generated stylesheet imported from the user's `gtk.css` | `extension/lib/css/gtk.js`, `extension/lib/gtkManager.js` |
+| Terminal | A generated Ptyxis palette plus the default profile's palette and opacity settings | `extension/lib/css/terminal.js`, `extension/lib/terminalManager.js` |
 | Wallpaper, icons, mode | Standard GNOME settings | `extension/lib/desktopManager.js` |
 | Preferences | GSettings schema plus one model module | `extension/schemas/`, `extension/lib/model.js` |
 | Settings window | libadwaita preferences window | `extension/prefs.js` |
 | Quick Settings entry | Quick Settings menu toggle | `extension/lib/indicator.js` |
 | Wallpapers | SVG generated from the mockup's gradients | `tools/build-wallpapers.py` |
-| Icon theme | SVG generated from the mockup's tiles | `tools/build-icons.py` |
+| Icon theme | SVG generated from the mockup's app tiles, folders and file cards | `tools/build-icons.py` |
 
 The stylesheet is generated rather than static so that every setting has a real effect: change a setting and the tokens are resolved again, the stylesheet is rebuilt, and only the sections for enabled components are included.
 
@@ -171,7 +177,8 @@ These are places where the approved mockup cannot be matched with supported GNOM
 - **Window styling applies when an application starts.** GTK reads user stylesheets at launch, so running applications keep their old look until restarted. The stylesheet also carries a light and a dark palette behind `prefers-color-scheme` so that GTK 4.20 and later can follow the system style without a restart; that path is not tested.
 - **GTK 3 styling is minimal:** accent colour, window radius and the close button.
 - **Snap applications keep their own icons.** Firefox, App Center and other snaps name their icon by file path, which no icon theme can override.
-- **The icon theme covers 16 applications.** Everything else falls through to the icon theme you were using when you ran `install.sh`.
+- **The icon theme covers 16 applications, folders and common file types.** Everything else falls through to the icon theme you were using when you ran `install.sh`. Folders are blue, as in the design, whatever your accent colour.
+- **The terminal styling is for Ptyxis only,** and only its default profile. The design's coloured prompt (blue path, accent branch, green arrow) comes from your shell prompt, not the theme; the palette supplies the colours such a prompt uses. Translucency shows the windows behind the terminal without blur.
 - **The login screen is not themed.** GDM runs as a different user and needs system-wide files. The extension stays loaded on the lock screen so that the unlock dialog gets the same stylesheet, but the lock screen's appearance has not been checked.
 - **Flatpak applications** do not see `~/.config/gtk-4.0` unless given access, for example with `flatpak override --user --filesystem=xdg-config/gtk-4.0:ro`.
 
@@ -219,6 +226,7 @@ journalctl --user -b -o cat /usr/bin/gnome-shell | grep -i -E "ubuntu.glass|JS E
 | Icon theme | Yes |
 | System light/dark style | Yes |
 | `ubuntu-glass.css` and the `@import` line in `gtk.css` | Yes, removed |
+| Terminal profile palette and opacity | Yes; the palette file is removed |
 
 Not restored automatically:
 
