@@ -10,6 +10,9 @@ icons/Ubuntu-Glass/:
   glyph on the special folders (Home, Documents, Downloads and so on).
 - Files: a white card with a coloured badge naming the file type, as in the
   file manager mockup.
+- Symbolic icons: the mockup's interface glyphs (Wi-Fi, battery, volume and
+  so on), converted from strokes to filled outlines so GNOME can recolour
+  them. The designs are in tools/symbolic_icons.py.
 
 Glyph outlines are from Lucide (https://lucide.dev), ISC licence.
 
@@ -18,6 +21,11 @@ Usage: python3 tools/build-icons.py
 
 import pathlib
 import shutil
+import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from stroke_outline import outline  # noqa: E402
+from symbolic_icons import ICONS as SYMBOLIC  # noqa: E402
 
 OUT = pathlib.Path(__file__).resolve().parent.parent / "icons" / "Ubuntu-Glass"
 
@@ -167,7 +175,7 @@ INDEX = """[Icon Theme]
 Name=Ubuntu-Glass
 Comment=Rounded app tiles for the Ubuntu Glass theme
 Inherits=Yaru,Adwaita,hicolor
-Directories=scalable/apps,scalable/places,scalable/mimetypes
+Directories=scalable/apps,scalable/places,scalable/mimetypes,symbolic
 
 [scalable/apps]
 Size=64
@@ -189,6 +197,13 @@ MinSize=16
 MaxSize=512
 Type=Scalable
 Context=MimeTypes
+
+[symbolic]
+Size=16
+MinSize=8
+MaxSize=512
+Type=Scalable
+Context=Status
 """
 
 
@@ -253,6 +268,32 @@ def render_file(label, color):
 """
 
 
+# Stroke width for symbolic glyphs, in 24-unit grid units: 1.5 px when the
+# icon is drawn at 16 px, as the design asks for small interface icons.
+SYMBOLIC_STROKE = 2.25
+SYMBOLIC_INK = "#2e3436"
+
+
+def render_symbolic(layers):
+    """A symbolic icon: one ink colour, filled paths only."""
+    paths = []
+    for layer in layers:
+        kind, d = layer[0], layer[1]
+        options = layer[2] if len(layer) > 2 else {}
+        shape = outline(d, SYMBOLIC_STROKE) if kind == "s" else d
+        extra = ""
+        if "opacity" in options:
+            extra += f' opacity="{options["opacity"]}"'
+        if "class" in options:
+            extra += f' class="{options["class"]}"'
+        paths.append(f'  <path d="{shape}" fill="{SYMBOLIC_INK}"{extra}/>')
+    body = "\n".join(paths)
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+{body}
+</svg>
+"""
+
+
 def write(directory, names, svg):
     for name in names:
         (directory / f"{name}.svg").write_text(svg, encoding="utf-8")
@@ -263,7 +304,8 @@ def main():
     if OUT.exists():
         shutil.rmtree(OUT)
     apps, places, mimetypes = (OUT / "scalable" / d for d in ("apps", "places", "mimetypes"))
-    for directory in (apps, places, mimetypes):
+    symbolic = OUT / "symbolic"
+    for directory in (apps, places, mimetypes, symbolic):
         directory.mkdir(parents=True)
     (OUT / "index.theme").write_text(INDEX, encoding="utf-8")
 
@@ -271,8 +313,9 @@ def main():
         sum(write(apps, names, render(glyph, gradient, light)) for glyph, gradient, light, names in APPS),
         sum(write(places, names, render_folder(glyph)) for glyph, names in FOLDERS),
         sum(write(mimetypes, names, render_file(label, color)) for label, color, names in FILES),
+        sum(write(symbolic, icon["names"], render_symbolic(icon["layers"])) for icon in SYMBOLIC),
     ]
-    print(f"wrote {counts[0]} app, {counts[1]} folder and {counts[2]} file icons "
+    print(f"wrote {counts[0]} app, {counts[1]} folder, {counts[2]} file and {counts[3]} symbolic icons "
           f"to {OUT.relative_to(OUT.parent.parent)}")
 
 
