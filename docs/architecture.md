@@ -71,6 +71,14 @@ GTK stylesheets follow the same idea with files: the theme writes its own `ubunt
 
 The effect is rectangular. That is fine for the top bar and nearly invisible on the dock, and it is the reason menus and popovers are not blurred (see the README's limitations).
 
+## Symbolic icons
+
+GNOME draws symbolic icons (the small one-colour icons in the top bar, Quick Settings, menus and header bars) by recolouring their *fill* to the text colour. The design's glyphs are Lucide outlines, which are *strokes*, and a stroke would stay black or turn into a filled blob.
+
+`tools/stroke_outline.py` converts each stroke into the filled shape it would paint: smooth stretches become one continuous outline, sharp corners get a round join, and curves tighter than the stroke fall back to overlapping pieces. All pieces are wound the same way so the non-zero fill rule draws their union. It uses only the Python standard library.
+
+The designs themselves are data in `tools/symbolic_icons.py`: a list of layers per icon, where a layer can be dimmed (signal and volume levels) or tagged `error` or `warning` so GNOME colours it. `tools/build-icons.py` renders them into `icons/Ubuntu-Glass/symbolic/`, and `tests/test_icons.py` checks that no stroke survives.
+
 ## Session modes
 
 The extension declares `unlock-dialog` as well as `user`. Without it, GNOME would disable the extension every time the screen locks, which would restore the wallpaper, move the dock and rewrite the GTK stylesheets on every lock, and show the old wallpaper on the lock screen. On the lock screen the extension does only two things differently: the top bar is not blurred, and the Glass tile's link to the settings window is hidden.
