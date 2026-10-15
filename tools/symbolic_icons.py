@@ -139,3 +139,12 @@ ICONS += [
     {"names": ["audio-input-microphone-muted-symbolic", "microphone-sensitivity-muted-symbolic",
                "microphone-disabled-symbolic"], "layers": [("s", MIC, DIM), ("s", "M2 2l20 20")]},
 ]
+
+# Output devices for the sound menu.
+ICONS += [
+    {"names": ["audio-speakers-symbolic", "audio-card-symbolic"],
+     "layers": [("s", rect(4, 2, 16, 20, 2) + circle(12, 14, 4) + "M12 6h.01")]},
+    {"names": ["audio-headphones-symbolic", "audio-headset-symbolic"],
+     "layers": [("s", "M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1"
+                      "a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3")]},
+]
