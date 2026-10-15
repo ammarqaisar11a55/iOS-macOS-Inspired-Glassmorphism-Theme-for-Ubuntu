@@ -234,3 +234,5 @@ ICONS += [
     {"names": ["window-close-symbolic", "edit-clear-symbolic", "process-stop-symbolic", "dialog-close-symbolic"],
      "layers": [("s", "M18 6 6 18M6 6l12 12")]},
 ]
+
+ICONS += [{"names": ["window-minimize-symbolic"], "layers": [("s", "M6 12h12")]}]
