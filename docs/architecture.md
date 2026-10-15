@@ -79,6 +79,10 @@ GNOME draws symbolic icons (the small one-colour icons in the top bar, Quick Set
 
 The designs themselves are data in `tools/symbolic_icons.py`: a list of layers per icon, where a layer can be dimmed (signal and volume levels) or tagged `error` or `warning` so GNOME colours it. `tools/build-icons.py` renders them into `icons/Ubuntu-Glass/symbolic/`, and `tests/test_icons.py` checks that no stroke survives.
 
+## Lock screen
+
+Most of the lock screen is plain stylesheet (`lib/css/lockScreen.js`). Two details are not reachable from CSS, and `lib/lockScreenManager.js` handles them when a lock screen is built: it moves GNOME's date label above the time label, and in light mode it raises the brightness of GNOME's background blur so the paper tint does not turn grey. It records GNOME's values first and restores them when the style is turned off or the extension is disabled.
+
 ## Session modes
 
 The extension declares `unlock-dialog` as well as `user`. Without it, GNOME would disable the extension every time the screen locks, which would restore the wallpaper, move the dock and rewrite the GTK stylesheets on every lock, and show the old wallpaper on the lock screen. On the lock screen the extension does only two things differently: the top bar is not blurred, and the Glass tile's link to the settings window is hidden.
