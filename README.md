@@ -16,6 +16,14 @@ Ubuntu Glass is a GNOME Shell extension with a settings window. Every effect can
 
 ![Files showing the blue folder icons and file-type badges](docs/screenshots/dark-files.png)
 
+### Lock screen
+
+| Dark | Light |
+|---|---|
+| ![Lock screen in dark mode: date above a large thin clock](docs/screenshots/dark-lock-screen.png) | ![Lock screen in light mode on warm paper](docs/screenshots/light-lock-screen.png) |
+
+After a key press the clock gives way to the avatar with a soft ring, the name, and a 340 px glass password field that turns accent-coloured on focus.
+
 ### Interface icons
 
 The design's interface glyphs ship as symbolic icons: Wi-Fi with signal levels, battery at every 10% with charging states, volume levels, Bluetooth, power modes, window controls, and so on. GNOME recolours them for dark and light, and for icons sitting on the accent colour.
@@ -116,7 +124,8 @@ Each switch styles one part of the desktop. Turning one off restores the standar
 | Quick settings | Panel, tiles, accent icon discs, sliders |
 | Notifications and calendar | Banners, notification list, calendar, date menu cards |
 | Menus and tooltips | Popup menus, tooltips, switches, sliders, checkboxes |
-| Dialogs and overlays | System dialogs, password prompts, volume and brightness overlays, Alt+Tab, lock screen |
+| Dialogs and overlays | System dialogs, password prompts, volume and brightness overlays, Alt+Tab |
+| Lock screen | Tinted blur, a large thin clock with the date above it, ringed avatar, glass password field and round buttons, in dark and light |
 | Overview and search | Search field, app grid, folders, search results |
 | Floating glass dock | Dock position, shape and material |
 | Dock animations | Dock hover and show/hide transitions |
@@ -194,7 +203,8 @@ These are places where the approved mockup cannot be matched with supported GNOM
 - **Snap applications keep their own icons.** Firefox, App Center and other snaps name their icon by file path, which no icon theme can override.
 - **The icon theme covers 16 applications, folders and common file types.** Everything else falls through to the icon theme you were using when you ran `install.sh`. Folders are blue, as in the design, whatever your accent colour.
 - **The terminal styling is for Ptyxis only,** and only its default profile. The design's coloured prompt (blue path, accent branch, green arrow) comes from your shell prompt, not the theme; the palette supplies the colours such a prompt uses. Translucency shows the windows behind the terminal without blur.
-- **The login screen is not themed.** GDM runs as a different user and needs system-wide files. The extension stays loaded on the lock screen so that the unlock dialog gets the same stylesheet, but the lock screen's appearance has not been checked.
+- **The login screen is not themed.** GDM runs as a separate system user and needs system-wide changes. The lock screen (after Super+L) is themed.
+- **The lock screen keeps GNOME's two-step flow:** the clock first, then the password prompt after a key press. The mockup shows both at once, and its arrow button inside the field does not exist in GNOME (Enter unlocks). Changing either would mean patching the unlock dialog, which risks locking you out.
 - **Flatpak applications** do not see `~/.config/gtk-4.0` unless given access, for example with `flatpak override --user --filesystem=xdg-config/gtk-4.0:ro`.
 
 ## Troubleshooting
