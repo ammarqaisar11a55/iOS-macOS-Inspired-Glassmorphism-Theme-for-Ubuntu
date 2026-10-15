@@ -122,6 +122,11 @@
       <summary>Custom window styling</summary>
       <description>Write a GTK stylesheet that applies the theme's colours, radii and window controls to GTK applications.</description>
     </key>
+    <key name="terminal-style" type="b">
+      <default>true</default>
+      <summary>Glass terminal</summary>
+      <description>Give the default Ptyxis profile the theme's palette and translucency. The profile's previous palette and opacity are restored when this is off.</description>
+    </key>
 
     <!-- Desktop -->
     <key name="icon-theme" type="b">
