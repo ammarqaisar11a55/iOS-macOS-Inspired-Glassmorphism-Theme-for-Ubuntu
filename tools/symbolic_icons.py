@@ -128,3 +128,14 @@ ICONS += [
     {"names": ["audio-volume-muted-symbolic", "audio-volume-muted-blocking-symbolic"],
      "layers": [("s", SPEAKER), ("s", "M22 9l-6 6M16 9l6 6")]},
 ]
+
+# Microphone; muted adds a slash.
+MIC = "M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3ZM19 10v2a7 7 0 0 1-14 0v-2M12 19v3"
+ICONS += [
+    {"names": ["audio-input-microphone-symbolic", "audio-input-microphone-high-symbolic",
+               "audio-input-microphone-medium-symbolic", "audio-input-microphone-low-symbolic",
+               "microphone-sensitivity-high-symbolic", "microphone-sensitivity-medium-symbolic",
+               "microphone-sensitivity-low-symbolic"], "layers": [("s", MIC)]},
+    {"names": ["audio-input-microphone-muted-symbolic", "microphone-sensitivity-muted-symbolic",
+               "microphone-disabled-symbolic"], "layers": [("s", MIC, DIM), ("s", "M2 2l20 20")]},
+]
