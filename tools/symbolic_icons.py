@@ -228,3 +228,9 @@ ICONS += [
     {"names": ["system-suspend-symbolic", "media-playback-pause-circle-symbolic"],
      "layers": [("s", circle(12, 12, 10) + "M10 9v6M14 9v6")]},
 ]
+
+# Window controls, as drawn in the design's title bars.
+ICONS += [
+    {"names": ["window-close-symbolic", "edit-clear-symbolic", "process-stop-symbolic", "dialog-close-symbolic"],
+     "layers": [("s", "M18 6 6 18M6 6l12 12")]},
+]
