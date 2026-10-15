@@ -115,3 +115,16 @@ ICONS += [
     {"names": ["battery-caution-charging-symbolic", "battery-empty-charging-symbolic"], "layers": battery(10, True)},
     {"names": ["battery-missing-symbolic"], "layers": [("s", BATTERY, DIM), ("s", "M10 10.5v1.8M10 14h.01")]},
 ]
+
+# Speaker with up to two sound waves; muted shows a cross.
+SPEAKER = "M11 5 6 9H2v6h4l5 4z"
+WAVE_NEAR = "M15.54 8.46a5 5 0 0 1 0 7.07"
+WAVE_FAR = "M19.07 4.93a10 10 0 0 1 0 14.14"
+ICONS += [
+    {"names": ["audio-volume-high-symbolic", "audio-volume-overamplified-symbolic"],
+     "layers": [("s", SPEAKER), ("s", WAVE_NEAR), ("s", WAVE_FAR)]},
+    {"names": ["audio-volume-medium-symbolic"], "layers": [("s", SPEAKER), ("s", WAVE_NEAR), ("s", WAVE_FAR, DIM)]},
+    {"names": ["audio-volume-low-symbolic"], "layers": [("s", SPEAKER), ("s", WAVE_NEAR, DIM), ("s", WAVE_FAR, DIM)]},
+    {"names": ["audio-volume-muted-symbolic", "audio-volume-muted-blocking-symbolic"],
+     "layers": [("s", SPEAKER), ("s", "M22 9l-6 6M16 9l6 6")]},
+]
