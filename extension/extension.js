@@ -18,6 +18,7 @@ import {DesktopManager} from './lib/desktopManager.js';
 import {DockManager} from './lib/dockManager.js';
 import {GtkManager} from './lib/gtkManager.js';
 import {GlassIndicator} from './lib/indicator.js';
+import {LockScreenManager} from './lib/lockScreenManager.js';
 import {StyleManager} from './lib/styleManager.js';
 import {TerminalManager} from './lib/terminalManager.js';
 import {buildShellCss} from './lib/css/index.js';
@@ -43,6 +44,7 @@ export default class UbuntuGlassExtension extends Extension {
         this._dock = new DockManager(this._backup);
         this._gtk = new GtkManager();
         this._terminal = new TerminalManager(this._backup);
+        this._lockScreen = new LockScreenManager();
         this._desktop = new DesktopManager(this._backup, this._iface, this.path);
         this._indicator = null;
         this._styleSourceId = 0;
@@ -89,10 +91,12 @@ export default class UbuntuGlassExtension extends Extension {
         this._style.destroy();
         this._gtk.destroy();
         this._terminal.destroy();
+        this._lockScreen.destroy();
         this._dock.destroy();
         this._desktop.destroy();
 
         this._blur = this._style = this._gtk = this._terminal = this._dock = this._desktop = null;
+        this._lockScreen = null;
         this._backup = null;
         this._iface = null;
         this._settings = null;
@@ -182,6 +186,7 @@ export default class UbuntuGlassExtension extends Extension {
         const values = readAll(this._settings);
         const env = this._env();
         this._style.apply(buildShellCss(values, env));
+        this._lockScreen.sync(values['lock-screen-style']);
         this._gtk.sync(values['window-style']
             ? {gtk4: buildGtk4Css(values, env), gtk3: buildGtk3Css(values, env)}
             : null);
