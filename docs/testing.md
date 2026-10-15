@@ -95,7 +95,7 @@ The sandbox itself sometimes starts with no extensions switched on, which stops 
 
 ## Not verified
 
-- The terminal as it looks with a shell running. The sandbox has no systemd user session, so Ptyxis applies the palette and translucency but cannot start a shell there.
+- The terminal in the sandbox: it has no systemd user session, so Ptyxis applies the palette and translucency but cannot start a shell there. The terminal was checked on a real desktop instead (see the README screenshot).
 - Folder glyphs for Documents, Downloads and the other special folders in a real home; the sandbox has no XDG user-directory configuration, so only Desktop showed its glyph.
 - Appearance and behaviour on the lock screen.
 - Whether running GTK 4 applications follow a light/dark switch without a restart.
