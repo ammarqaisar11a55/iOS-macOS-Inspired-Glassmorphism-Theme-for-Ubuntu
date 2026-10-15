@@ -16,6 +16,16 @@ Ubuntu Glass is a GNOME Shell extension with a settings window. Every effect can
 
 ![Files showing the blue folder icons and file-type badges](docs/screenshots/dark-files.png)
 
+### Interface icons
+
+The design's interface glyphs ship as symbolic icons: Wi-Fi with signal levels, battery at every 10% with charging states, volume levels, Bluetooth, power modes, window controls, and so on. GNOME recolours them for dark and light, and for icons sitting on the accent colour.
+
+![The theme's symbolic interface icons](docs/screenshots/symbolic-icons.png)
+
+| Quick settings icons, dark | Quick settings icons, light |
+|---|---|
+| ![Quick settings using the theme's icons in dark mode](docs/screenshots/dark-quick-settings-icons.png) | ![Quick settings using the theme's icons in light mode](docs/screenshots/light-quick-settings-icons.png) |
+
 | Terminal, dark | Terminal, light |
 |---|---|
 | ![Ptyxis terminal with the Ubuntu Glass palette in dark mode](docs/screenshots/dark-terminal.png) | ![Ptyxis terminal with the Ubuntu Glass palette in light mode](docs/screenshots/light-terminal.png) |
@@ -28,7 +38,7 @@ Top to bottom: quick settings in both modes, the calendar and the light desktop,
 - Glass quick settings, notifications, calendar, menus, dialogs, overlays and overview.
 - Matching colours, corner radii and window controls for GTK applications.
 - Four wallpapers (Ember, Dusk, Tide, Graphite), each in a light and a dark version.
-- An icon theme with rounded app tiles for 16 common applications, blue folders, and file icons with a type badge.
+- An icon theme with rounded app tiles for 16 common applications, blue folders, file icons with a type badge, and 311 symbolic interface icons (Wi-Fi, battery, volume, Bluetooth, settings, power, window controls and more) drawn from the design's glyphs.
 - A glass terminal: the theme's palette and translucency for Ptyxis, Ubuntu's terminal. Dark is graphite glass; light is warm paper with deeper colours, every one readable against it.
 - Light and dark appearances, five accent colours, and five presets.
 - **Glass Theme Settings**, opened from the Glass tile in Quick Settings.
@@ -118,7 +128,7 @@ Each switch styles one part of the desktop. Turning one off restores the standar
 | Switch | Effect |
 |---|---|
 | Theme wallpaper | Sets one of the four wallpapers. Your previous wallpaper is restored when off. |
-| Ubuntu Glass icons | Switches the icon theme: app tiles, blue folders and file-type icons. Your previous icon theme is restored when off. |
+| Ubuntu Glass icons | Switches the icon theme: app tiles, blue folders, file-type icons, and the symbolic icons in the top bar, Quick Settings, menus and app header bars. Your previous icon theme is restored when off. |
 | Glass tile | Shows or hides the Glass tile in Quick Settings. |
 
 ### Accessibility
@@ -164,6 +174,7 @@ Changing one of those options by hand shows the preset as Custom. Setting them b
 | Quick Settings entry | Quick Settings menu toggle | `extension/lib/indicator.js` |
 | Wallpapers | SVG generated from the mockup's gradients | `tools/build-wallpapers.py` |
 | Icon theme | SVG generated from the mockup's app tiles, folders and file cards | `tools/build-icons.py` |
+| Symbolic icons | The mockup's stroked glyphs, converted to filled outlines so GNOME can recolour them | `tools/symbolic_icons.py`, `tools/stroke_outline.py` |
 
 The stylesheet is generated rather than static so that every setting has a real effect: change a setting and the tokens are resolved again, the stylesheet is rebuilt, and only the sections for enabled components are included.
 
@@ -250,6 +261,7 @@ Disables the extension (which restores your settings), then removes the extensio
 
 ```bash
 gjs -m tests/run.js      # unit tests: settings model, tokens, stylesheets
+python3 tests/test_icons.py   # icon theme checks
 tests/headless.sh        # integration test in an isolated headless GNOME Shell
 python3 tools/build-wallpapers.py
 python3 tools/build-icons.py
