@@ -435,3 +435,14 @@ ICONS += [
                "preferences-desktop-locale-symbolic", "globe-symbolic"],
      "layers": [("s", circle(12, 12, 10) + "M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20")]},
 ]
+
+ICONS += [
+    {"names": ["system-software-install-symbolic", "org.gnome.Software-symbolic", "snap-store-symbolic",
+               "software-store-symbolic"],
+     "layers": [("s", "M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4ZM3 6h18M16 10a4 4 0 0 1-8 0")]},
+    {"names": ["package-x-generic-symbolic", "software-update-available-symbolic", "application-x-addon-symbolic"],
+     "layers": [("s", "M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4"
+                      "A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73zM12 22V12M3.29 7 12 12l8.71-5M7.5 4.27l9 5.15")]},
+    {"names": ["folder-archive-symbolic", "application-x-archive-symbolic", "archive-symbolic"],
+     "layers": [("s", rect(2, 3, 20, 5, 1) + "M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8M10 12h4")]},
+]
