@@ -30,3 +30,27 @@ def rect(x, y, w, h, r):
 DIM = {"opacity": 0.3}
 
 ICONS = []
+
+# Wi-Fi: a dot and three arcs. Signal strength dims the arcs that are not reached.
+WIFI_DOT = "M12 20h.01"
+WIFI_ARCS = ["M8.5 16.429a5 5 0 0 1 7 0", "M5 12.859a10 10 0 0 1 14 0", "M2 8.82a15 15 0 0 1 20 0"]
+WIFI_OFF = ("M12 20h.01M8.5 16.429a5 5 0 0 1 7 0M5 12.859a10 10 0 0 1 5.17-2.69M19 12.859a10 10 0 0 0-2.007-1.523"
+            "M2 8.82a15 15 0 0 1 4.177-2.643M22 8.82a15 15 0 0 0-11.288-3.764M2 2l20 20")
+
+
+def wifi(level):
+    """level 0-3: how many arcs are drawn at full strength."""
+    return [("s", WIFI_DOT)] + [("s", arc) if i < level else ("s", arc, DIM) for i, arc in enumerate(WIFI_ARCS)]
+
+
+ICONS += [
+    {"names": ["network-wireless-signal-excellent-symbolic", "network-wireless-connected-symbolic",
+               "network-wireless-symbolic", "network-wireless-hotspot-symbolic"], "layers": wifi(3)},
+    {"names": ["network-wireless-signal-good-symbolic"], "layers": wifi(2)},
+    {"names": ["network-wireless-signal-ok-symbolic"], "layers": wifi(1)},
+    {"names": ["network-wireless-signal-weak-symbolic", "network-wireless-acquiring-symbolic"], "layers": wifi(0)},
+    {"names": ["network-wireless-signal-none-symbolic"], "layers": [("s", WIFI_DOT, DIM)] + [("s", a, DIM) for a in WIFI_ARCS]},
+    {"names": ["network-wireless-offline-symbolic", "network-wireless-disabled-symbolic",
+               "network-wireless-no-route-symbolic", "network-wireless-hardware-disabled-symbolic"],
+     "layers": [("s", WIFI_OFF)]},
+]
