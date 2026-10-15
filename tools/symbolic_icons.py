@@ -54,3 +54,11 @@ ICONS += [
                "network-wireless-no-route-symbolic", "network-wireless-hardware-disabled-symbolic"],
      "layers": [("s", WIFI_OFF)]},
 ]
+
+# Wired network: an Ethernet port.
+ETHERNET = "m15 20 3-3h2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2l3 3zM6 8v1M10 8v1M14 8v1M18 8v1"
+ICONS += [
+    {"names": ["network-wired-symbolic", "network-wired-acquiring-symbolic"], "layers": [("s", ETHERNET)]},
+    {"names": ["network-wired-disconnected-symbolic", "network-wired-offline-symbolic",
+               "network-wired-no-route-symbolic"], "layers": [("s", ETHERNET, DIM), ("s", "M2 2l20 20")]},
+]
