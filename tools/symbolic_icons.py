@@ -335,15 +335,14 @@ STAR = "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 
 ICONS += [
     {"names": ["document-open-recent-symbolic", "preferences-system-time-symbolic", "alarm-clock-symbolic",
                "history-symbolic"], "layers": [("s", circle(12, 12, 10) + "M12 6v6l4 2")]},
-    {"names": ["non-starred-symbolic", "starred-symbolic-outline"], "layers": [("s", STAR)]},
+    {"names": ["non-starred-symbolic"], "layers": [("s", STAR)]},
     {"names": ["starred-symbolic", "emblem-favorite-symbolic"], "layers": [("s", STAR), ("f", STAR)]},
     {"names": ["user-bookmarks-symbolic", "bookmark-new-symbolic"],
      "layers": [("s", "m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z")]},
 ]
 
 ICONS += [
-    {"names": ["network-workgroup-symbolic", "network-server-symbolic", "folder-remote-symbolic",
-               "network-wired-no-route-symbolic-alt"],
+    {"names": ["network-workgroup-symbolic", "network-server-symbolic", "folder-remote-symbolic"],
      "layers": [("s", rect(16, 16, 6, 6, 1) + rect(2, 16, 6, 6, 1) + rect(9, 2, 6, 6, 1)
                       + "M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3M12 12V8")]},
     {"names": ["drive-harddisk-symbolic", "drive-removable-media-symbolic", "drive-harddisk-solidstate-symbolic",
