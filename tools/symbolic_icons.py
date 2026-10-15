@@ -165,3 +165,9 @@ ICONS += [
     {"names": ["night-light-symbolic", "weather-clear-night-symbolic"], "layers": [("s", MOON)]},
     {"names": ["night-light-disabled-symbolic"], "layers": [("s", MOON, DIM), ("s", "M2 2l20 20")]},
 ]
+
+# Half-filled circle for the dark style toggle.
+ICONS += [
+    {"names": ["dark-mode-symbolic", "display-dark-mode-symbolic", "preferences-desktop-appearance-symbolic"],
+     "layers": [("s", circle(12, 12, 10)), ("f", "M12 6a6 6 0 0 1 0 12z")]},
+]
