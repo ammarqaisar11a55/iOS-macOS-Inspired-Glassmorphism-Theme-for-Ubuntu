@@ -240,3 +240,14 @@ ICONS += [{"names": ["window-minimize-symbolic"], "layers": [("s", "M6 12h12")]}
 ICONS += [{"names": ["window-maximize-symbolic"], "layers": [("s", rect(6, 6, 12, 12, 2))]}]
 
 ICONS += [{"names": ["window-restore-symbolic"], "layers": [("s", rect(5, 9, 10, 10, 2) + "M9 5h8a2 2 0 0 1 2 2v8")]}]
+
+# Chevrons for disclosure, menus and navigation.
+ICONS += [
+    {"names": ["pan-end-symbolic", "go-next-symbolic", "pan-end-symbolic-ltr", "go-next-symbolic-ltr"],
+     "layers": [("s", "m9 18 6-6-6-6")]},
+    {"names": ["pan-start-symbolic", "go-previous-symbolic", "go-previous-symbolic-ltr"],
+     "layers": [("s", "m15 18-6-6 6-6")]},
+    {"names": ["pan-down-symbolic", "go-down-symbolic"], "layers": [("s", "m6 9 6 6 6-6")]},
+    {"names": ["pan-up-symbolic", "go-up-symbolic"], "layers": [("s", "m18 15-6-6-6 6")]},
+    {"names": ["go-next-arrow-symbolic", "mail-forward-symbolic"], "layers": [("s", "M5 12h14M12 5l7 7-7 7")]},
+]
