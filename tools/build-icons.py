@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 """Generate the Ubuntu-Glass icon theme.
 
-App icons in the approved design are rounded tiles: a two-stop gradient of
-one hue with a thin white glyph. This script draws those tiles as SVG and
-writes them under icons/Ubuntu-Glass/, once for each icon name that the
-matching application is known by.
+Draws three kinds of icon from the approved design, as SVG, under
+icons/Ubuntu-Glass/:
+
+- App icons: rounded tiles, a two-stop gradient of one hue with a thin white
+  glyph, written once for each name the application is known by.
+- Folders: the solid blue folder from the file manager mockup, with a small
+  glyph on the special folders (Home, Documents, Downloads and so on).
+- Files: a white card with a coloured badge naming the file type, as in the
+  file manager mockup.
 
 Glyph outlines are from Lucide (https://lucide.dev), ISC licence.
 
@@ -58,6 +63,19 @@ GLYPHS = {
              "H7.24a2 2 0 0 0-1.79 1.11zM6 16h.01M10 16h.01",
 }
 
+# Glyphs used only on special folders.
+GLYPHS.update({
+    "home": "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 "
+            "2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z",
+    "monitor": rect(2, 3, 20, 14, 2) + "M8 21h8M12 17v4",
+    "download": "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3",
+    "share": circle(18, 5, 3) + circle(6, 12, 3) + circle(18, 19, 3) + "M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98",
+    "file": "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7ZM14 2v4a2 2 0 0 0 2 2h4",
+    "network": rect(16, 16, 6, 6, 1) + rect(2, 16, 6, 6, 1) + rect(9, 2, 6, 6, 1)
+               + "M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3M12 12V8",
+    "star": "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z",
+})
+
 GRADIENTS = {
     "blue": ("#5A93D8", "#336FB8"),
     "orange": ("#F08A4B", "#D9612B"),
@@ -96,11 +114,60 @@ APPS = [
     ("drive", "silver", True, ["org.gnome.DiskUtility", "gnome-disks"]),
 ]
 
+# Folder colour from the design (#6E9FDB dark, #5B93D6 light): one icon has
+# to serve both appearances, so the gradient runs between the two.
+FOLDER_TOP, FOLDER_BOTTOM, FOLDER_INK = "#7AAAE3", "#5089D0", "#2B5C99"
+
+# (glyph or None, icon names)
+FOLDERS = [
+    (None, ["folder", "inode-directory", "folder-open", "folder-drag-accept", "folder-visiting"]),
+    ("home", ["user-home", "folder-home"]),
+    ("monitor", ["user-desktop", "folder-desktop"]),
+    ("filetext", ["folder-documents"]),
+    ("download", ["folder-download"]),
+    ("music", ["folder-music"]),
+    ("image", ["folder-pictures"]),
+    ("video", ["folder-videos"]),
+    ("share", ["folder-publicshare"]),
+    ("file", ["folder-templates"]),
+    ("network", ["folder-remote", "network-workgroup"]),
+    ("star", ["user-bookmarks", "folder-saved-search"]),
+]
+
+# (badge text, badge colour, icon names). Badge colours are the file-type
+# colours used in the design's file manager.
+FILES = [
+    ("TXT", "#7A7A80", ["text-x-generic", "text-plain", "text-x-log", "application-x-zerosize"]),
+    ("MD", "#4A86C8", ["text-markdown", "text-x-markdown"]),
+    ("JSON", "#B8862A", ["application-json", "application-x-json"]),
+    ("TS", "#336FB8", ["text-x-typescript", "application-x-typescript", "text-typescript"]),
+    ("JS", "#B8862A", ["application-javascript", "text-javascript", "application-x-javascript"]),
+    ("PY", "#336FB8", ["text-x-python", "text-x-python3", "application-x-python"]),
+    ("SH", "#3E9A63", ["text-x-script", "application-x-shellscript", "text-x-sh"]),
+    ("HTML", "#D9612B", ["text-html", "application-xhtml+xml"]),
+    ("CSS", "#7B5BB6", ["text-css"]),
+    ("C", "#5A5A60", ["text-x-csrc", "text-x-chdr", "text-x-c++src", "text-x-c++hdr", "text-x-csharp"]),
+    ("PDF", "#C9443F", ["application-pdf"]),
+    ("DOC", "#336FB8", ["x-office-document", "application-vnd.oasis.opendocument.text",
+                        "application-vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "application-msword"]),
+    ("ODS", "#3E9A63", ["x-office-spreadsheet", "application-vnd.oasis.opendocument.spreadsheet",
+                        "application-vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "text-csv", "application-vnd.ms-excel"]),
+    ("PPT", "#D9612B", ["x-office-presentation", "application-vnd.oasis.opendocument.presentation",
+                        "application-vnd.openxmlformats-officedocument.presentationml.presentation"]),
+    ("ZIP", "#7A7A80", ["package-x-generic", "application-zip", "application-x-tar",
+                        "application-x-compressed-tar", "application-x-7z-compressed"]),
+    ("IMG", "#3E9A63", ["image-x-generic"]),
+    ("AUD", "#C9443F", ["audio-x-generic"]),
+    ("VID", "#C9443F", ["video-x-generic"]),
+]
+
 INDEX = """[Icon Theme]
 Name=Ubuntu-Glass
 Comment=Rounded app tiles for the Ubuntu Glass theme
 Inherits=Yaru,Adwaita,hicolor
-Directories=scalable/apps
+Directories=scalable/apps,scalable/places,scalable/mimetypes
 
 [scalable/apps]
 Size=64
@@ -108,6 +175,20 @@ MinSize=16
 MaxSize=512
 Type=Scalable
 Context=Applications
+
+[scalable/places]
+Size=64
+MinSize=16
+MaxSize=512
+Type=Scalable
+Context=Places
+
+[scalable/mimetypes]
+Size=64
+MinSize=16
+MaxSize=512
+Type=Scalable
+Context=MimeTypes
 """
 
 
@@ -132,20 +213,67 @@ def render(glyph, gradient, light):
 """
 
 
+def render_folder(glyph):
+    """A solid folder, back panel slightly darker than the front."""
+    scale = SIZE / 24
+    folder = GLYPHS["folder"]
+    mark = ""
+    if glyph:
+        # A small glyph centred on the folder's front face.
+        g = 22
+        x, y = (SIZE - g) / 2, 25
+        mark = (f'\n  <path transform="translate({x} {y}) scale({g / 24:.4f})" d="{GLYPHS[glyph]}" '
+                f'fill="none" stroke="{FOLDER_INK}" stroke-opacity="0.75" stroke-width="2" '
+                f'stroke-linecap="round" stroke-linejoin="round"/>')
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{SIZE}" height="{SIZE}" viewBox="0 0 {SIZE} {SIZE}">
+  <defs>
+    <linearGradient id="front" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="{FOLDER_TOP}"/>
+      <stop offset="1" stop-color="{FOLDER_BOTTOM}"/>
+    </linearGradient>
+  </defs>
+  <path transform="translate(0 1) scale({scale:.4f})" d="{folder}" fill="#000000" opacity="0.16"/>
+  <path transform="scale({scale:.4f})" d="{folder}" fill="{FOLDER_BOTTOM}"/>
+  <rect x="5.3" y="19" width="53.4" height="38.3" rx="4.8" fill="url(#front)"/>
+  <rect x="5.8" y="19.5" width="52.4" height="37.3" rx="4.3" fill="none" stroke="#FFFFFF" stroke-opacity="0.25"/>{mark}
+</svg>
+"""
+
+
+def render_file(label, color):
+    """A white card with a folded corner and a coloured type badge."""
+    width = 9 + 6.2 * len(label)
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{SIZE}" height="{SIZE}" viewBox="0 0 {SIZE} {SIZE}">
+  <path d="M15 4h24l14 14v38a4 4 0 0 1-4 4H15a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z" transform="translate(0 1)" fill="#000000" opacity="0.14"/>
+  <path d="M15 4h24l14 14v38a4 4 0 0 1-4 4H15a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z" fill="#FBFAF8" stroke="#000000" stroke-opacity="0.12"/>
+  <path d="M39 4v10a4 4 0 0 0 4 4h10" fill="#E9E7E3" stroke="#000000" stroke-opacity="0.12" stroke-linejoin="round"/>
+  <rect x="15" y="43" width="{width:.1f}" height="11" rx="3" fill="{color}"/>
+  <text x="{15 + width / 2:.1f}" y="51.2" text-anchor="middle" font-family="Ubuntu Sans, sans-serif" font-size="8" font-weight="700" letter-spacing="0.2" fill="#FFFFFF">{label}</text>
+</svg>
+"""
+
+
+def write(directory, names, svg):
+    for name in names:
+        (directory / f"{name}.svg").write_text(svg, encoding="utf-8")
+    return len(names)
+
+
 def main():
     if OUT.exists():
         shutil.rmtree(OUT)
-    apps = OUT / "scalable" / "apps"
-    apps.mkdir(parents=True)
+    apps, places, mimetypes = (OUT / "scalable" / d for d in ("apps", "places", "mimetypes"))
+    for directory in (apps, places, mimetypes):
+        directory.mkdir(parents=True)
     (OUT / "index.theme").write_text(INDEX, encoding="utf-8")
 
-    count = 0
-    for glyph, gradient, light, names in APPS:
-        svg = render(glyph, gradient, light)
-        for name in names:
-            (apps / f"{name}.svg").write_text(svg, encoding="utf-8")
-            count += 1
-    print(f"wrote {count} icons for {len(APPS)} applications to {OUT.relative_to(OUT.parent.parent)}")
+    counts = [
+        sum(write(apps, names, render(glyph, gradient, light)) for glyph, gradient, light, names in APPS),
+        sum(write(places, names, render_folder(glyph)) for glyph, names in FOLDERS),
+        sum(write(mimetypes, names, render_file(label, color)) for label, color, names in FILES),
+    ]
+    print(f"wrote {counts[0]} app, {counts[1]} folder and {counts[2]} file icons "
+          f"to {OUT.relative_to(OUT.parent.parent)}")
 
 
 if __name__ == "__main__":
