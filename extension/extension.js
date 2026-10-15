@@ -3,7 +3,8 @@
 // The extension owns no visuals of its own. It reads the settings, resolves
 // them into design tokens, and hands the result to small managers that each
 // control one mechanism: the shell stylesheet, background blur, the dock
-// layout, GTK stylesheets, and the desktop settings (wallpaper, icons, mode).
+// layout, GTK stylesheets, the terminal profile, and the desktop settings
+// (wallpaper, icons, mode).
 
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
@@ -18,8 +19,10 @@ import {DockManager} from './lib/dockManager.js';
 import {GtkManager} from './lib/gtkManager.js';
 import {GlassIndicator} from './lib/indicator.js';
 import {StyleManager} from './lib/styleManager.js';
+import {TerminalManager} from './lib/terminalManager.js';
 import {buildShellCss} from './lib/css/index.js';
 import {buildGtk3Css, buildGtk4Css} from './lib/css/gtk.js';
+import {buildTerminalPalette, terminalOpacity} from './lib/css/terminal.js';
 import {STYLE_KEYS, isPresetKey, matchPreset, readAll} from './lib/model.js';
 import {BLUR_RADIUS} from './lib/tokens.js';
 
@@ -39,6 +42,7 @@ export default class UbuntuGlassExtension extends Extension {
         this._blur = new BlurManager();
         this._dock = new DockManager(this._backup);
         this._gtk = new GtkManager();
+        this._terminal = new TerminalManager(this._backup);
         this._desktop = new DesktopManager(this._backup, this._iface, this.path);
         this._indicator = null;
         this._styleSourceId = 0;
@@ -84,10 +88,11 @@ export default class UbuntuGlassExtension extends Extension {
         this._blur.destroy();
         this._style.destroy();
         this._gtk.destroy();
+        this._terminal.destroy();
         this._dock.destroy();
         this._desktop.destroy();
 
-        this._blur = this._style = this._gtk = this._dock = this._desktop = null;
+        this._blur = this._style = this._gtk = this._terminal = this._dock = this._desktop = null;
         this._backup = null;
         this._iface = null;
         this._settings = null;
@@ -118,7 +123,7 @@ export default class UbuntuGlassExtension extends Extension {
                 this._settings.set_string('preset', preset);
         }
 
-        if (STYLE_KEYS.includes(key) || key === 'window-style')
+        if (STYLE_KEYS.includes(key) || key === 'window-style' || key === 'terminal-style')
             this._queueStyle();
 
         switch (key) {
@@ -179,6 +184,9 @@ export default class UbuntuGlassExtension extends Extension {
         this._style.apply(buildShellCss(values, env));
         this._gtk.sync(values['window-style']
             ? {gtk4: buildGtk4Css(values, env), gtk3: buildGtk3Css(values, env)}
+            : null);
+        this._terminal.sync(values['terminal-style']
+            ? {palette: buildTerminalPalette(values, env), opacity: terminalOpacity(values, env)}
             : null);
     }
 
