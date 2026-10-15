@@ -410,3 +410,8 @@ ICONS += [
                "internet-mail-symbolic", "org.gnome.Geary-symbolic"],
      "layers": [("s", rect(2, 4, 20, 16, 2) + "M22 7l-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7")]},
 ]
+
+ICONS += [
+    {"names": ["x-office-calendar-symbolic", "org.gnome.Calendar-symbolic", "office-calendar-symbolic",
+               "month-symbolic"], "layers": [("s", rect(3, 4, 18, 18, 2) + "M16 2v4M8 2v4M3 10h18")]},
+]
